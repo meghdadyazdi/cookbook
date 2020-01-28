@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block recipe %}
+{% for user in users%}
+{{user.username}}
+{{user.password}}
+{% endfor %}
+{%endblock%}

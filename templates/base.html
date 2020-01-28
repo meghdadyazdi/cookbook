@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link href="assets/css/style.css">
+</head>
+
+<body>
+
+<nav>
+    <div class="nav-wrapper">
+      <a href="{{url_for('find_recipe')}}" class="brand-logo">CooKBooK</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="{{url_for('find_recipe')}}">Home</a></li>
+        <li><a href="{{url_for('add_recipe')}}"><i class="material-icons left">add</i>Add your recipe</a></li>
+        <li><a href="{{url_for('sign_in')}}">Sign in</a></li>
+        <li><a href="{{url_for('sign_up')}}">Sign up</a></li>
+      </ul>
+    </div>
+  </nav>
+
+{%block recipe%}
+{%endblock%}
+
+<footer class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Footer Content</h5>
+                <p class="grey-text text-lighten-4"></p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2020 Copyright
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+        </footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
+<script>
+$(document).ready(function() {
+    $('input#input_text, textarea#textarea2').characterCounter();
+  });
+
+</script>
+</body>
+
+</html>
