@@ -4,54 +4,74 @@
 	<form class="col s12">
 		<div class="row">
 			<div class="input-field col s4 push-s4">
-				<i class="material-icons prefix">account_circle</i>
-				<input id="icon_prefix" type="text" class="validate">
-				<label for="icon_prefix">Meal</label>
+				<select>
+                    <option value="" disabled selected>Choose a time for this recipe</option>
+                    <option value="1">Breakfast</option>
+                    <option value="2">Lunch</option>
+                    <option value="3">Dinner</option>
+                    <option value="3">Other</option>
+                </select>
+				<label><strong>Meal select</strong></label>
 			</div>
 		</div>
+
 		<div class="row">
 			<div class="input-field col s4 push-s4">
-				<i class="material-icons prefix">vpn_key</i>
-				<input id="icon_pass" type="tel" class="validate">
-				<label for="icon_pass">Name</label>
-			</div>
+            <!-- <div class="input-field col s2">
+            <div class=""><strong>Name</strong></div>
+            </div> -->
+            <!-- <div class="input-field col s10"> -->
+            <!-- <i class="material-icons prefix">vpn_key</i> -->
+				<input id="recipe_name" type="tel" class="validate">
+				<label for="recipe_name"><i>Name</i></label>
+            <!-- </div> -->
+            </div>
 		</div>
+
 		<div class="row">
 			<div class="input-field col s4 push-s4">
-				<i class="material-icons prefix">vpn_key</i>
-				<textarea id="icon_reppass" type="tel" class="validate"></textarea>
-				<label for="icon_reppass">repeat password</label>
+				<!-- <i class="material-icons prefix">vpn_key</i> -->
+				<textarea id="recipe_descript" type="tel" class="validate"></textarea>
+				<label for="recipe_descript"><i>Explain How you make this food</i></label>
 			</div>
 		</div>
-        <div class="row">
-			<div class="input-field col s4 push-s4">
-				<i class="material-icons prefix">vpn_key</i>
-				<textarea id="icon_reppass" type="tel" class="validate"></textarea>
-				<label for="icon_reppass">Ingredient</label>
-			</div>
-		</div>
-        <div class="row">
-			<div class="input-field col s4 push-s4">
-				<i class="material-icons prefix">vpn_key</i>
-				<textarea id="icon_reppass" type="tel" class="validate"></textarea>
-				<label for="icon_reppass">Energy</label>
-			</div>
-		</div>
-        <div class="row">
-			<div class="input-field col s4 push-s4">
-				<i class="material-icons prefix">vpn_key</i>
-				<textarea id="icon_reppass" type="tel" class="validate"></textarea>
-				<label for="icon_reppass">Photo</label>
-			</div>
-		</div>
-        <div class="row">
-			<div class="input-field col s4 push-s4">
-				<i class="material-icons prefix">vpn_key</i>
-				<textarea id="icon_reppass" type="tel" class="validate"></textarea>
-				<label for="icon_reppass">Video</label>
-			</div>
-		</div>
+
 		<div class="row">
+			<div class="input-field col s4 push-s4">
+				<!-- <i class="material-icons prefix">vpn_key</i> -->
+				<textarea id="recipe_ing" type="tel" class="validate"></textarea>
+				<label for="recipe_ing"><i>Ingredient</i></label>
+			</div>
+		</div>
+
+		<div class="row">
+        <div class="input-field col s4 push-s4">
+				<select>
+                    <option value="" disabled selected>How much Energy does this food have?</option>
+                    <option value="1">Low calorie</option>
+                    <option value="2">High calorie</option>
+                </select>
+				<label><i>Energy select</i></label>
+			</div>
+		</div>
+		
+        <div class="row">
+			<div class="input-field col s4 push-s4">
+				<!-- <i class="material-icons prefix">vpn_key</i> -->
+				<textarea id="recipe_photo" type="tel" class="validate"></textarea>
+				<label for="recipe_photo"><i>Any link of a Photo for this food?</i></label>
+			</div>
+		</div>
+		
+        <div class="row">
+			<div class="input-field col s4 push-s4">
+				<!-- <i class="material-icons prefix">vpn_key</i> -->
+				<textarea id="recipe_video" type="tel" class="validate"></textarea>
+				<label for="recipe_video"><i>Any link of a Video for this food?</i></label>
+			</div>
+		</div>
+		
+        <div class="row">
 			<div class="input-field col s4 push-s4">
 				<a class="waves-effect waves-light btn">Add</a>
 			</div>

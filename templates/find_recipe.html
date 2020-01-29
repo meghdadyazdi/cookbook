@@ -1,18 +1,55 @@
 {% extends 'base.html' %}
 
 {%block recipe%}
+
 <div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s6 push-s3 center-align">
-          <i class="material-icons prefix">search</i>
-          <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-          <label for="icon_prefix2">Find a recipe here</label>
+	<div class="input-field col s6 push-s3">
+		<i class="material-icons prefix">search</i>
+		<input id="recipe_name" type="tel" class="validate">
+		<label for="recipe_name"><i>Find a recipe here ...</i></label>
+	</div>
+</div>
+
+<section class="container">
+	{% for recipe in recipes%}
+
+	<div class="row">
+		<div class="input-field col s3">
+			<img src="{{recipe.recipe_photo}}" alt="{{recipe.recipe_name}}" width="150" height="150">
         </div>
-      </div>
-    </form>
-  </div>
+         
+        <div class="input-field col s9">
+        {%if "{{recipe.recipe_meal}}"%}
+			<p>  <strong>{{recipe.recipe_name}}:</strong>This food has {{recipe.recipe_energy}} <strong> calorie </strong> 
+            and is recomended for <strong>{{recipe.recipe_meal}}</strong></p>
+        {% else %}
+
+            <p><strong>{{recipe.recipe_name}}: </strong>This food has {{recipe.recipe_energy}} <strong> calorie </strong> and is 
+            recomended to have in any <strong>meals</strong></p>
+            {% endif %}
+        </div>
+        
+
+
+        <div class="row"><strong>Ingredients:</strong> {{recipe.recipe_ingredients}}</div>
+		<div class="row"><strong>Recipe:</strong> {{recipe.recipe}}</div>
+
+        <!-- {%if "{{recipe.recipe_video}}"%}
+        <iframe width="145" height="110" src="{{recipe.recipe_video}}"></iframe>
+        {% endif %} -->
+        
+		
+	
+
+</div>
+
+	{% endfor %}
+
+
+
+</section>
+
+
 <h1>CooK</h1>
 
 {%endblock%}
-

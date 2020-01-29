@@ -12,7 +12,7 @@ mongo = PyMongo(app)
 @app.route('/find_recipe')
 def find_recipe():
     return render_template("find_recipe.html", 
-                           users=mongo.db.users.find())
+                           recipes=mongo.db.recipes.find())
 
 @app.route('/add_recipe')
 def add_recipe():
