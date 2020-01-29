@@ -20,11 +20,11 @@
          
         <div class="input-field col s9">
         {%if "{{recipe.recipe_meal}}"%}
-			<p>  <strong>{{recipe.recipe_name}}:</strong>This food has {{recipe.recipe_energy}} <strong> calorie </strong> 
+			<p>  <strong>{{recipe.recipe_name}}:</strong>This food has <strong> {{recipe.recipe_energy}} </strong> 
             and is recomended for <strong>{{recipe.recipe_meal}}</strong></p>
         {% else %}
 
-            <p><strong>{{recipe.recipe_name}}: </strong>This food has {{recipe.recipe_energy}} <strong> calorie </strong> and is 
+            <p><strong>{{recipe.recipe_name}}: </strong>This food has <strong>{{recipe.recipe_energy}} </strong> and is 
             recomended to have in any <strong>meals</strong></p>
             {% endif %}
         </div>

@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {%block recipe%}
 <div class="row">
-	<form class="col s12">
+	<form action="{{ url_for('add_recipe') }}" method="POST" class="col s12">
 		<div class="row">
 			<div class="input-field col s4 push-s4">
-				<select>
+				<select id="recipe_meal" name="recipe_meal">
                     <option value="" disabled selected>Choose a time for this recipe</option>
-                    <option value="1">Breakfast</option>
-                    <option value="2">Lunch</option>
-                    <option value="3">Dinner</option>
-                    <option value="3">Other</option>
+                    <option value="Breakfast">Breakfast</option>
+                    <option value="Lunch">Lunch</option>
+                    <option value="Dinner">Dinner</option>
+                    <option value="Other">Other</option>
                 </select>
 				<label><strong>Meal select</strong></label>
 			</div>
@@ -17,63 +17,64 @@
 
 		<div class="row">
 			<div class="input-field col s4 push-s4">
-            <!-- <div class="input-field col s2">
-            <div class=""><strong>Name</strong></div>
-            </div> -->
-            <!-- <div class="input-field col s10"> -->
-            <!-- <i class="material-icons prefix">vpn_key</i> -->
-				<input id="recipe_name" type="tel" class="validate">
+				<input id="recipe_name" name="recipe_name" class="validate">
 				<label for="recipe_name"><i>Name</i></label>
-            <!-- </div> -->
-            </div>
-		</div>
-
-		<div class="row">
-			<div class="input-field col s4 push-s4">
-				<!-- <i class="material-icons prefix">vpn_key</i> -->
-				<textarea id="recipe_descript" type="tel" class="validate"></textarea>
-				<label for="recipe_descript"><i>Explain How you make this food</i></label>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="input-field col s4 push-s4">
-				<!-- <i class="material-icons prefix">vpn_key</i> -->
-				<textarea id="recipe_ing" type="tel" class="validate"></textarea>
-				<label for="recipe_ing"><i>Ingredient</i></label>
+				<textarea id="recipe_ingredients" name="recipe_ingredients" class="validate"></textarea>
+				<label for="recipe_ingredients"><i>Ingredient</i></label>
 			</div>
 		</div>
 
 		<div class="row">
-        <div class="input-field col s4 push-s4">
-				<select>
+			<div class="input-field col s4 push-s4">
+				<textarea id="recipe" name="recipe"  class="validate"></textarea>
+				<label for="recipe"><i>Explain How you make this food</i></label>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="input-field col s4 push-s4">
+				<select id="recipe_energy" name="recipe_energy">
                     <option value="" disabled selected>How much Energy does this food have?</option>
-                    <option value="1">Low calorie</option>
-                    <option value="2">High calorie</option>
+                    <option value="Low calorie">Low calorie</option>
+                    <option value="High calorie">High calorie</option>
                 </select>
 				<label><i>Energy select</i></label>
 			</div>
 		</div>
-		
-        <div class="row">
+
+		<div class="row">
 			<div class="input-field col s4 push-s4">
-				<!-- <i class="material-icons prefix">vpn_key</i> -->
-				<textarea id="recipe_photo" type="tel" class="validate"></textarea>
+				<textarea id="recipe_photo" name="recipe_photo" class="validate"></textarea>
 				<label for="recipe_photo"><i>Any link of a Photo for this food?</i></label>
 			</div>
 		</div>
-		
-        <div class="row">
+
+		<div class="row">
 			<div class="input-field col s4 push-s4">
-				<!-- <i class="material-icons prefix">vpn_key</i> -->
-				<textarea id="recipe_video" type="tel" class="validate"></textarea>
+				<textarea id="recipe_video" name="recipe_video" class="validate"></textarea>
 				<label for="recipe_video"><i>Any link of a Video for this food?</i></label>
 			</div>
 		</div>
-		
+
         <div class="row">
 			<div class="input-field col s4 push-s4">
-				<a class="waves-effect waves-light btn">Add</a>
+				<select id="recipe_username" name="recipe_username">
+                    <option value="{{active_user}}" selected>{{active_user}}</option>
+                </select>
+				<label>Active user</label>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="input-field col s4 push-s4">
+				<button class="btn waves-effect waves-light" type="submit">Add  recipe
+                <i class="material-icons right">playlist_add</i>
+                </button>
 			</div>
 		</div>
 

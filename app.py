@@ -22,12 +22,6 @@ def find_recipe():
     return render_template("find_recipe.html", 
                            recipes=mongo.db.recipes.find(), active_user=session['username'])
 
-@app.route('/add_recipe')
-def add_recipe():
-    return render_template("add_recipe.html", 
-                           users=mongo.db.users.find())
-
-
 
 @app.route('/sign_in', methods=["POST", "GET"])
 def sign_in():
@@ -57,6 +51,21 @@ def sign_up():
         return 'That username already exists!'
 
     return render_template('sign_up.html')
+
+
+
+# I should ask how the hell is working????????
+@app.route('/add_recipe')
+def add_recipe():
+    return render_template("add_recipe.html", 
+                           users=mongo.db.users.find(), active_user=session['username'])
+
+@app.route('/add_recipe', methods=['POST'])
+def insert_recipe():
+    recipes =  mongo.db.recipes
+    recipes.insert_one(request.form.to_dict())
+    return redirect(url_for('find_recipe'))
+
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP','0.0.0.0'),
