@@ -1,34 +1,34 @@
 {% extends 'base.html' %}
 {%block recipe%}
+
 <div class="row">
-	<form class="col s12">
+	<form method=POST class="col s12">
 		<div class="row">
 			<div class="input-field col s4 push-s4">
 				<i class="material-icons prefix">account_circle</i>
-				<input id="icon_prefix" type="text" class="validate">
-				<label for="icon_prefix">username</label>
+				<label for="exampleInputEmail1">Username</label>
+                    <input type="text" class="form-control" name="username" placeholder="Username">
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s4 push-s4">
 				<i class="material-icons prefix">vpn_key</i>
-				<input id="icon_pass" type="tel" class="validate">
-				<label for="icon_pass">password</label>
+				<label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" name="pass" placeholder="Password">
 			</div>
 		</div>
-		<div class="row">
+		<!-- <div class="row">
 			<div class="input-field col s4 push-s4">
 				<i class="material-icons prefix">vpn_key</i>
 				<input id="icon_reppass" type="tel" class="validate">
 				<label for="icon_reppass">repeat password</label>
 			</div>
-		</div>
+		</div> -->
 		<div class="row">
 			<div class="input-field col s4 push-s4">
-				<a class="waves-effect waves-light btn">Creat</a>
+				<button type="submit" class="btn btn-primary btn-block">Register</button>
 			</div>
 		</div>
-
 	</form>
 </div>
 
