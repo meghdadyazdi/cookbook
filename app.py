@@ -12,17 +12,6 @@ mongo = PyMongo(app)
 app.secret_key = "randomstring123"
 
 @app.route('/')
-@app.route('/find_recipe')
-def find_recipe():
-    #  if 'username' in session:
-    #     return 'You are logged in as ' + session['username']
-
-
-
-    return render_template("find_recipe.html", 
-                           recipes=mongo.db.recipes.find(), active_user=session['username'])
-
-
 @app.route('/sign_in', methods=["POST", "GET"])
 def sign_in():
     if request.method == 'POST':
@@ -65,6 +54,25 @@ def insert_recipe():
     recipes =  mongo.db.recipes
     recipes.insert_one(request.form.to_dict())
     return redirect(url_for('find_recipe'))
+
+
+@app.route('/find_recipe')
+def find_recipe():
+    return render_template("find_recipe.html", 
+                           recipes=mongo.db.recipes.find(), active_user=session['username'])
+
+@app.route('/find_recipe', methods=['POST', 'GET'])
+def search_recipe():
+    recipes =  mongo.db.recipes
+    # db.recipes.createIndex({recipe_name: 'text', recipe: 'text'})
+    SR=recipes.find({ "$text": {"$search": request.form.get('search_recipe')}})
+    
+    # return render_template("find_recipe.html", 
+    #                        recipes=mongo.db.recipes.find(), search_result=SR)
+    print ("SR[0]",SR)
+    return ""
+
+
 
 
 if __name__ == '__main__':
