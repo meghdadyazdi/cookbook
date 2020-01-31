@@ -1,6 +1,41 @@
 {% extends 'base.html' %}
 
 {%block recipe%}
+
+
+
+<nav>
+	<div class="nav-wrapper">
+		<a href="{{url_for('find_recipe')}}" class="brand-logo">CooKBooK</a>
+		<ul id="nav-mobile" class="right hide-on-med-and-down">
+			<li><a href="{{url_for('find_recipe')}}">Home</a></li>
+
+			{% if active_user%}
+			<li><a href="{{url_for('add_recipe')}}"><i class="material-icons left">add</i>Add your recipe</a></li>
+			<li>
+				<ul id="dropdown1" class="dropdown-content">
+					<li><a href="{{url_for('my_recipe')}}">My recipes</a></li>
+					<li><a href="{{url_for('logout')}}">Log out</a></li>
+				</ul>
+			</li>
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><b>{{active_user}}</b><i class="material-icons right">arrow_drop_down</i></a></li>
+    
+			{% else %}
+			<li><a href="{{url_for('sign_in')}}">Sign in</a></li>
+			<li><a href="{{url_for('sign_up')}}">Sign up</a></li>
+			{% endif %}
+		</ul>
+	</div>
+</nav>
+
+
+
+
+
+
+
+
+
 <form action="{{ url_for('search_recipe') }}" method="POST" class="col s12">
 	<div class="row">
 		<div class="input-field col s6 push-s3">
@@ -36,19 +71,19 @@
 			{%if "{{recipe.recipe_video}}"%}
 			<!-- <iframe width="145" height="110" src="{{recipe.recipe_video}}"></iframe> -->
 			{% endif %}
-            <hr>
+			<hr>
 		</div>
 	</div>
 	{% endfor %}
 </section>
 
 {% if recipes_search %}
-	<div class="row">
-		<div class="col s4 push-s4">
-			<p>Oops! No result. Try another food or enjoy are latest food</p>
-		</div>
+<div class="row">
+	<div class="col s4 push-s4">
+		<p>Oops! No result. Try another food or enjoy are latest food</p>
 	</div>
+</div>
 
-    
+
 {% endif%}
 {%endblock%}

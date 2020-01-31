@@ -47,6 +47,8 @@ def sign_up():
 # I should ask how the hell is working????????
 @app.route('/add_recipe')
 def add_recipe():
+    # return render_template("add_recipe.html",
+    #                        users=mongo.db.users.find(), active_user=session['username'])
     return render_template("add_recipe.html",
                            users=mongo.db.users.find(), active_user=session['username'])
 
@@ -60,8 +62,13 @@ def insert_recipe():
 
 @app.route('/find_recipe')
 def find_recipe():
-    return render_template("find_recipe.html",
+    if session:
+        return render_template("find_recipe.html",
                            recipes=mongo.db.recipes.find(), active_user=session['username'])
+    else:
+        return render_template("find_recipe.html",
+                           recipes=mongo.db.recipes.find())
+
 
 
 @app.route('/find_recipe', methods=['POST', 'GET'])
@@ -81,6 +88,13 @@ def search_recipe():
 
     return render_template("find_recipe.html",
                            recipes_search=SR, recipes=mongo.db.recipes.find(), active_user=session['username'])
+
+
+@app.route('/logout', methods=['POST', 'GET'])
+def logout():
+    session['username']=[]
+    return redirect(url_for('find_recipe'))
+
 
 
 if __name__ == '__main__':

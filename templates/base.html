@@ -10,7 +10,7 @@
 
 <body>
 
-<nav>
+<!-- <nav>
     <div class="nav-wrapper">
       <a href="{{url_for('find_recipe')}}" class="brand-logo">CooKBooK</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -20,7 +20,7 @@
         <li><a href="{{url_for('sign_up')}}">Sign up</a></li>
       </ul>
     </div>
-  </nav>
+  </nav> -->
 
 {%block recipe%}
 {%endblock%}
@@ -56,11 +56,10 @@
 <script>
 $(document).ready(function() {
     $('input#input_text, textarea#textarea2').characterCounter();
-  });
-  $(document).ready(function(){
     $('select').formSelect();
+    $(".dropdown-trigger").dropdown();
   });
-
+  
 </script>
 </body>
 
