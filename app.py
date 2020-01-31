@@ -95,6 +95,10 @@ def logout():
     session['username']=[]
     return redirect(url_for('find_recipe'))
 
+@app.route('/my_recipe')
+def my_recipe():
+    return render_template("my_recipe.html",
+                           my_recipes=mongo.db.recipes.find({"recipe_username": session['username']}), active_user=session['username'])
 
 
 if __name__ == '__main__':
