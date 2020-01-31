@@ -67,16 +67,17 @@ def find_recipe():
 @app.route('/find_recipe', methods=['POST', 'GET'])
 def search_recipe():
     recipes = mongo.db.recipes
-    recipes.ensure_index([('recipe_name', 'text'), ('recipe', 'text')],
-                         name="search_index", weights={'title': 100, 'body': 25})
+    # recipes.ensure_index([('recipe_name', 'text'), ('recipe', 'text')],
+    #                      name="search_index", weights={'title': 100, 'body': 25})
+
+    recipes.create_index([('recipe_meal', 'text'), ('recipe_name', 'text'), ('recipe', 'text'),
+                          ('recipe_ingredients', 'text'), ('recipe_energy', 'text')],name="search_index", weights={'title': 100, 'body': 25})
 
 # recipes.ensure_index([('recipe_name', 'text'), ('recipe', 'text'), ('recipe_meal', 'text'), ('recipe_ingredients', 'text')
 #     , ('recipe_energy', 'text'), ('recipe_photo', 'text'), ('recipe_video', 'text'),], name="search_index", weights={'title':100,'body':25})
 
     SR = recipes.find(
         {'$text': {'$search': request.form.get('search_recipe')}})
-
-    
 
     return render_template("find_recipe.html",
                            recipes_search=SR, recipes=mongo.db.recipes.find(), active_user=session['username'])
