@@ -13,6 +13,15 @@ app.secret_key = "randomstring123"
 
 
 @app.route('/')
+@app.route('/find_recipe')
+def find_recipe():
+    if session:
+        return render_template("find_recipe.html",
+                           recipes=mongo.db.recipes.find(), active_user=session['username'])
+    else:
+        return render_template("find_recipe.html",
+                           recipes=mongo.db.recipes.find())
+
 @app.route('/sign_in', methods=["POST", "GET"])
 def sign_in():
     if request.method == 'POST':
@@ -59,17 +68,6 @@ def insert_recipe():
     recipes = mongo.db.recipes
     recipes.insert_one(request.form.to_dict())
     return redirect(url_for('my_recipe'))
-
-
-@app.route('/find_recipe')
-def find_recipe():
-    if session:
-        return render_template("find_recipe.html",
-                           recipes=mongo.db.recipes.find(), active_user=session['username'])
-    else:
-        return render_template("find_recipe.html",
-                           recipes=mongo.db.recipes.find())
-
 
 
 @app.route('/search_recipe', methods=['POST', 'GET'])

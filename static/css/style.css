@@ -1,0 +1,21 @@
+body{
+    background-color: #808080
+}
+.page-footer,
+nav,
+.sidenav{
+    /* background-color: #00e676; */
+    background-color: #28beb5;
+}
+
+.btn, .btn-large, .btn-small {
+    background-color: #ff1744;
+}
+
+.search_form{
+    background-color: rgba(0, 0, 0, 0)
+}
+
+.sidenav li>a {
+    color: #fff;
+}
