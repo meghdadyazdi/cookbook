@@ -6,10 +6,19 @@
 		<a href="{{url_for('find_recipe')}}" class="brand-logo">CooKBooK</a>
 		<ul id="nav-mobile" class="right hide-on-med-and-down">
 			<li><a href="{{url_for('find_recipe')}}">Home</a></li>
-			
+
 			{% if active_user%}
-            <li><a href="{{url_for('add_recipe')}}"><i class="material-icons left">add</i>Add your recipe</a></li>
-			<li><a href="{{url_for('sign_in')}}"><b>{{active_user}}</b></a></li>
+			<li><a href="{{url_for('add_recipe')}}"><i class="material-icons left">add</i>Add your recipe</a></li>
+			<li>
+				<ul id="dropdown1" class="dropdown-content">
+					<li><a href="{{url_for('my_recipe')}}">My recipes</a></li>
+					<li><a href="{{url_for('logout')}}">Log out</a></li>
+				</ul>
+			</li>
+			<li><a class="dropdown-trigger" href="#!"
+					data-target="dropdown1"><b>{{active_user}}</b><i class="material-icons right">arrow_drop_down</i></a>
+			</li>
+
 			{% else %}
 			<li><a href="{{url_for('sign_in')}}">Sign in</a></li>
 			<li><a href="{{url_for('sign_up')}}">Sign up</a></li>
@@ -20,7 +29,7 @@
 
 
 <div class="row">
-	<form action="{{ url_for('edit_recipe', recipe_id=user_recipe._id) }}" method="POST" class="col s12">
+	<form action="{{ url_for('update_recipe', recipe_id=user_recipe._id) }}" method="POST" class="col s12">
 		<div class="row">
 			<div class="input-field col s4 push-s4">
 				<select id="recipe_meal" name="recipe_meal">
@@ -29,20 +38,20 @@
                     <option value="Breakfast" selected>Breakfast</option>
                     <option value="Lunch">Lunch</option>
                     <option value="Dinner">Dinner</option>
-                    <option value="Other">Otherssssssssss</option>
-                    {% elif user_recipe.recipe_meal == 'Lunch'%}
+                    <option value="Other">Other</option>
+                    {% elif user_recipe.recipe_meal == 'lunch'%}
                     <option value="" disabled >Choose a time for this recipe</option>
                     <option value="Breakfast">Breakfast</option>
                     <option value="Lunch" selected>Lunch</option>
                     <option value="Dinner">Dinner</option>
                     <option value="Other">Other</option>
-                    {% elif user_recipe.recipe_meal == 'Dinner'%}
+                    {% elif user_recipe.recipe_meal == 'dinner'%}
                     <option value="" disabled >Choose a time for this recipe</option>
                     <option value="Breakfast">Breakfast</option>
                     <option value="Lunch" >Lunch</option>
                     <option value="Dinner" selected>Dinner</option>
                     <option value="Other">Other</option>
-                    {% elif user_recipe.recipe_meal == 'Dinner'%}
+                    {% elif user_recipe.recipe_meal == 'other'%}
                     <option value="" disabled >Choose a time for this recipe</option>
                     <option value="Breakfast">Breakfast</option>
                     <option value="Lunch" >Lunch</option>
@@ -54,30 +63,29 @@
                     <option value="Lunch" >Lunch</option>
                     <option value="Dinner" >Dinner</option>
                     <option value="Other">Other</option>
-                    True
                     {% endif%}
                 </select>
-				<label><strong>Meal select</strong></label>
+				<label>Meal select</label>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="input-field col s4 push-s4">
-				<input id="recipe_name" name="recipe_name" class="validate">
+				<input id="recipe_name" name="recipe_name" class="validate" value="{{user_recipe.recipe_name}}">
 				<label for="recipe_name"><i>Name</i></label>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="input-field col s4 push-s4">
-				<textarea id="recipe_ingredients" name="recipe_ingredients" class="validate"></textarea>
+				<textarea id="recipe_ingredients" name="recipe_ingredients" class="validate" >{{user_recipe.recipe_ingredients}}</textarea>
 				<label for="recipe_ingredients"><i>Ingredient</i></label>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="input-field col s4 push-s4">
-				<textarea id="recipe" name="recipe"  class="validate"></textarea>
+				<textarea id="recipe" name="recipe"  class="validate">{{user_recipe.recipe}}</textarea>
 				<label for="recipe"><i>Explain How you make this food</i></label>
 			</div>
 		</div>
@@ -85,9 +93,27 @@
 		<div class="row">
 			<div class="input-field col s4 push-s4">
 				<select id="recipe_energy" name="recipe_energy">
+                    {% if user_recipe.recipe_energy == 'low calories' %}
+                    <option value="" disabled>How much Energy does this food have?</option>
+                    <option value="Low calories" selected>Low calories</option>
+                    <option value="Medium calories">Medium calories</option>
+                    <option value="High calories">High calories</option>
+                    {% elif user_recipe.recipe_energy == 'medium calories'%}
+                    <option value="" disabled>How much Energy does this food have?</option>
+                    <option value="Low calories" >Low calories</option>
+                    <option value="Medium calories" selected>Medium calories</option>
+                    <option value="High calories" selected>High calories</option>
+                    {% elif user_recipe.recipe_energy == 'high calories'%}
+                    <option value="" disabled>How much Energy does this food have?</option>
+                    <option value="Low calories" >Low calories</option>
+                    <option value="Medium calories" >Medium  calories</option>
+                    <option value="High calories" selected>High calories</option>
+                    {% else%}
                     <option value="" disabled selected>How much Energy does this food have?</option>
-                    <option value="Low calorie">Low calorie</option>
-                    <option value="High calorie">High calorie</option>
+                    <option value="Low calories" >Low calories</option>
+                    <option value="Medium calories" >Medium calories</option>
+                    <option value="High calories" >High calories</option>
+                    {% endif%}
                 </select>
 				<label><i>Energy select</i></label>
 			</div>
@@ -95,14 +121,14 @@
 
 		<div class="row">
 			<div class="input-field col s4 push-s4">
-				<textarea id="recipe_photo" name="recipe_photo" class="validate"></textarea>
+				<textarea id="recipe_photo" name="recipe_photo" class="validate">{{user_recipe.recipe_photo}}</textarea>
 				<label for="recipe_photo"><i>Any link of a Photo for this food?</i></label>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="input-field col s4 push-s4">
-				<textarea id="recipe_video" name="recipe_video" class="validate"></textarea>
+				<textarea id="recipe_video" name="recipe_video" class="validate">{{user_recipe.recipe_video}}</textarea>
 				<label for="recipe_video"><i>Any link of a Video for this food?</i></label>
 			</div>
 		</div>
@@ -117,12 +143,10 @@
 		</div>
 
 		<div class="row">
-			<div class="input-field col s4 push-s4">
-				<button class="btn waves-effect waves-light" type="submit">Add  recipe
+            <button class="btn waves-effect waves-light" type="submit" name="action">Edit Task
                 <i class="material-icons right">playlist_add</i>
-                </button>
-			</div>
-		</div>
+             </button>
+        </div>
 
 	</form>
 </div>

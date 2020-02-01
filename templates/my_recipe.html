@@ -61,9 +61,40 @@
 			{%if "{{recipe.recipe_video}}"%}
 			<!-- <iframe width="145" height="110" src="{{recipe.recipe_video}}"></iframe> -->
 			{% endif %}
+			<a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}"
+				class="waves-effect waves-light btn btn_small blue">Edit</a>
+			<a  href="{{url_for('delete_recipe', recipe_id=recipe._id)}}" data-target="modal1" class="waves-effect waves-light btn btn_small modal-trigger">Delete</a>
+			<!-- Modal Structure
+			<div id="modal1" class="modal">
+				<div class="modal-content">
+					<h4>You are going to delete your recipe.</h4>
+					<p>Are you sure?</p>
+				</div>
+				<div class="modal-footer">
+					<a href="{{url_for('delete_recipe', recipe_id=recipe._id)}}" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+				</div>
+			</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			<hr>
 		</div>
 	</div>
+
 	{% endfor %}
 </section>
 

@@ -58,7 +58,7 @@ def add_recipe():
 def insert_recipe():
     recipes = mongo.db.recipes
     recipes.insert_one(request.form.to_dict())
-    return redirect(url_for('find_recipe'))
+    return redirect(url_for('my_recipe'))
 
 
 @app.route('/find_recipe')
@@ -115,24 +115,29 @@ def edit_recipe(recipe_id):
                                           active_user=session['username'])
 
 
-@app.route('/update_task/<task_id>', methods=["POST"])
-def update_task(task_id):
-    tasks = mongo.db.tasks
-    tasks.update( {'_id': ObjectId(task_id)},
+@app.route('/update_recipe/<recipe_id>', methods=['POST', 'GET'])
+def update_recipe(recipe_id):
+    recipes = mongo.db.recipes
+    recipes.update( {'_id': ObjectId(recipe_id)},
     {
-        'task_name':request.form.get('task_name'),
-        'category_name':request.form.get('category_name'),
-        'task_description': request.form.get('task_description'),
-        'due_date': request.form.get('due_date'),
-        'is_urgent':request.form.get('is_urgent')
+        'recipe_meal':request.form.get('recipe_meal'),
+        'recipe_name':request.form.get('recipe_name'),
+        'recipe_ingredients': request.form.get('recipe_ingredients'),
+        'recipe': request.form.get('recipe'),
+        'recipe_energy':request.form.get('recipe_energy'),
+        'recipe_photo':request.form.get('recipe_photo'),
+        'recipe_video':request.form.get('recipe_video'),
+        'recipe_username':request.form.get('recipe_username')
     })
-    return redirect(url_for('get_tasks'))
+    return redirect(url_for('my_recipe'))
 
 
-@app.route('/delete_task/<task_id>')
-def delete_task(task_id):
-    mongo.db.tasks.remove({'_id': ObjectId(task_id)})
-    return redirect(url_for('get_tasks'))
+
+
+@app.route('/delete_recipe/<recipe_id>')
+def delete_recipe(recipe_id):
+    mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
+    return redirect(url_for('my_recipe'))
 
 
 
