@@ -22,7 +22,8 @@ def sign_in():
             if request.form.get('pass') == login_user['password']:
                 session['username'] = request.form['username']
                 return redirect(url_for("find_recipe"))
-        return 'Invalid username/password combination'
+        return render_template('sign_in.html', invalid_pass=True)
+        # return 'Invalid username/password combination'
     return render_template('sign_in.html')
 
 
@@ -38,8 +39,8 @@ def sign_up():
                 'username'), 'password': request.form.get('pass')})
             session['username'] = request.form['username']
             return redirect(url_for('find_recipe'))
-
-        return 'That username already exists!'
+        return render_template('sign_up.html', invalid_username=True)
+        # return 'That username already exists!'
 
     return render_template('sign_up.html')
 
@@ -71,7 +72,7 @@ def find_recipe():
 
 
 
-@app.route('/find_recipe', methods=['POST', 'GET'])
+@app.route('/search_recipe', methods=['POST', 'GET'])
 def search_recipe():
     recipes = mongo.db.recipes
     # recipes.ensure_index([('recipe_name', 'text'), ('recipe', 'text')],
@@ -82,12 +83,14 @@ def search_recipe():
 
 # recipes.ensure_index([('recipe_name', 'text'), ('recipe', 'text'), ('recipe_meal', 'text'), ('recipe_ingredients', 'text')
 #     , ('recipe_energy', 'text'), ('recipe_photo', 'text'), ('recipe_video', 'text'),], name="search_index", weights={'title':100,'body':25})
+    SR = recipes.find({'$text': {'$search': request.form.get('search_recipe')}})
 
-    SR = recipes.find(
-        {'$text': {'$search': request.form.get('search_recipe')}})
-
-    return render_template("find_recipe.html",
+    if SR:
+        return render_template("search_recipe.html",
                            recipes_search=SR, recipes=mongo.db.recipes.find(), active_user=session['username'])
+    else:
+        return render_template("search_recipe.html",
+                           recipes_search=SR, recipes=mongo.db.recipes.find(), active_user=session['username'], no_recipe=True)
 
 
 @app.route('/logout', methods=['POST', 'GET'])
@@ -99,6 +102,52 @@ def logout():
 def my_recipe():
     return render_template("my_recipe.html",
                            my_recipes=mongo.db.recipes.find({"recipe_username": session['username']}), active_user=session['username'])
+
+
+
+
+
+
+@app.route('/edit_recipe/<recipe_id>')
+def edit_recipe(recipe_id):
+    return render_template('edit_recipe.html', user_recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}),
+                                          recipes=mongo.db.recipes.find(),
+                                          active_user=session['username'])
+
+
+@app.route('/update_task/<task_id>', methods=["POST"])
+def update_task(task_id):
+    tasks = mongo.db.tasks
+    tasks.update( {'_id': ObjectId(task_id)},
+    {
+        'task_name':request.form.get('task_name'),
+        'category_name':request.form.get('category_name'),
+        'task_description': request.form.get('task_description'),
+        'due_date': request.form.get('due_date'),
+        'is_urgent':request.form.get('is_urgent')
+    })
+    return redirect(url_for('get_tasks'))
+
+
+@app.route('/delete_task/<task_id>')
+def delete_task(task_id):
+    mongo.db.tasks.remove({'_id': ObjectId(task_id)})
+    return redirect(url_for('get_tasks'))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 if __name__ == '__main__':

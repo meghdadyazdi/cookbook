@@ -33,9 +33,6 @@
 
 
 
-
-
-
 <form action="{{ url_for('search_recipe') }}" method="POST" class="col s12">
 	<div class="row">
 		<div class="input-field col s6 push-s3">
@@ -51,8 +48,10 @@
 	</div>
 </form>
 
+
+{% if recipes_search[0] %}
 <section class="container">
-	{% for recipe in recipes %}
+	{% for recipe in recipes_search %}
 	<div class="row">
 		<div class="input-field col s3">
 			<img src="{{recipe.recipe_photo}}" alt="{{recipe.recipe_name}}" width="150" height="150">
@@ -73,9 +72,15 @@
 			{% endif %}
 			<hr>
 		</div>
-
 	{% endfor %}
 </section>
+{% else%}
+<div class="row">
+	<div class="col s6 push-s3">
+		<p>Oops! No result. Try another food</p>
+	</div>
+</div>
+{% endif %}
 
 
 {%endblock%}

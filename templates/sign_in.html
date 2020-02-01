@@ -8,9 +8,9 @@
 		<a href="{{url_for('find_recipe')}}" class="brand-logo">CooKBooK</a>
 		<ul id="nav-mobile" class="right hide-on-med-and-down">
 			<li><a href="{{url_for('find_recipe')}}">Home</a></li>
-			
+
 			{% if active_user%}
-            <li><a href="{{url_for('add_recipe')}}"><i class="material-icons left">add</i>Add your recipe</a></li>
+			<li><a href="{{url_for('add_recipe')}}"><i class="material-icons left">add</i>Add your recipe</a></li>
 			<li><a href="{{url_for('sign_in')}}"><b>{{active_user}}</b></a></li>
 			{% else %}
 			<li><a href="{{url_for('sign_in')}}">Sign in</a></li>
@@ -24,28 +24,33 @@
 
 
 <div class="row">
-    <form method=POST class="col s12">
-      <div class="row">
-        <div class="input-field col s4 push-s4">
-          <i class="material-icons prefix">account_circle</i>
-          <label for="exampleInputEmail1">Username</label>
-                    <input type="text" class="form-control" name="username" placeholder="Username">
+	<form method=POST class="col s12">
+		<div class="row">
+			<div class="input-field col s4 push-s4">
+				<i class="material-icons prefix">account_circle</i>
+				<label for="exampleInputEmail1">Username</label>
+				<input type="text" class="form-control" name="username" placeholder="Username">
         </div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4 push-s4">
+					<i class="material-icons prefix">vpn_key</i>
+					<label for="exampleInputPassword1">Password</label>
+					<input type="password" class="form-control" name="pass" placeholder="Password">
         </div>
-        <div class="row">
-        <div class="input-field col s4 push-s4">
-          <i class="material-icons prefix">vpn_key</i>
-          <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" name="pass" placeholder="Password">
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s4 push-s4">
-          <button type="submit" class="btn btn-primary btn-block">Log In</button>
-        </div>
-      </div>
-    </form>
-  </div> 
-
+				</div>
+				{% if invalid_pass %}
+				<div class="row">
+					<div class="input-field col s4 push-s4">
+						<p class="">Invalid username or password</p>
+					</div>
+				</div>
+				{% endif %}
+				<div class="row">
+					<div class="input-field col s4 push-s4">
+						<button type="submit" class="btn btn-primary btn-block">Log In</button>
+					</div>
+				</div>
+	</form>
+</div>
 {%endblock%}
-
