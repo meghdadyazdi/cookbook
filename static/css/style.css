@@ -37,6 +37,13 @@ nav,
     left: 1rem;
 }
 
+.bt_line{
+    border-bottom: 1px solid #0eb382;
+}
+
+.btn:hover, .btn-large:hover, .btn-small:hover {
+    background-color:#0eb382;
+}
 .container{
     -webkit-box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.75);
 -moz-box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.75);
