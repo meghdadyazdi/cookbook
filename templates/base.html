@@ -6,7 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>CooKBooK</title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+		integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 	<!-- <link href="tyle.css"> -->
 	<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
@@ -33,15 +34,15 @@
 						data-target="dropdown1"><b>{{active_user}}</b><i class="material-icons right">arrow_drop_down</i></a>
 				</li>
 				{% else %}
-				<li><a href="{{url_for('sign_in')}}">Sign in</a></li>
-				<li><a href="{{url_for('sign_up')}}">Sign up</a></li>
+				<li><a href="{{url_for('sign_in')}}">Sign in<span><i class="fas fa-sign-in-alt"></i></span></a></li>
+				<li><a href="{{url_for('sign_up')}}">Sign up<span><i class="fas fa-sign-out-alt"></i></span></a></li>
 				{% endif %}
 			</ul>
 			<ul class="sidenav" id="mobile-demo">
 				{% if active_user%}
-				<li><a href="{{url_for('add_recipe')}}"><i class="material-icons left">add</i>Add your recipe</a></li>
+				<li><a href="{{url_for('add_recipe')}}"><i class="material-icons left">add</i>Add recipe</a></li>
 				<li><a class="" href="#!"
-						data-target=""><b>{{active_user}}</b><i class="material-icons right">arrow_drop_down</i></a>
+						data-target=""><b>{{active_user}}</b></a>
 				</li>
 				<li>
 					<ul class="side_inn_list">
@@ -50,8 +51,8 @@
 					</ul>
 				</li>
 				{% else %}
-				<li><a href="{{url_for('sign_in')}}">Sign in</a></li>
-				<li><a href="{{url_for('sign_up')}}">Sign up</a></li>
+				<li><a href="{{url_for('sign_in')}}">Sign in<span><i class="fas fa-sign-in-alt"></i></span></a></li>
+				<li><a href="{{url_for('sign_up')}}">Sign up<span><i class="fas fa-sign-out-alt"></i></span></a></li>
 				{% endif %}
 			</ul>
 		</div>
