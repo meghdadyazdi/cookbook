@@ -8,11 +8,25 @@
 
 
 
-
-
-
-
 <form action="{{ url_for('search_recipe') }}" method="POST" class="col s3 search_form">
+<div class="row">
+        <div class="input-field col s6 push-s3">
+          <input id="search_recipe" name="search_recipe" class="validate" placeholder="Find your recipe ..." required>
+          <label class="label-icon" for="search_recipe"><i class="material-icons">search</i></label>
+          <!-- <i class="material-icons">close</i> -->
+          <div class="row">
+				<div class="input-field col s4 push-s5">
+					<button type="submit" class="btn btn-primary btn-block">Search</button>
+				</div>
+			</div>
+        </div>
+        
+            </div>
+</form>
+
+
+
+<!-- <form action="{{ url_for('search_recipe') }}" method="POST" class="col s3 search_form">
 	<div class="row">
 		<div class="input-field col s6 push-s3">
 			<i class="material-icons prefix">search</i>
@@ -25,7 +39,7 @@
 			</div>
 		</div>
 	</div>
-</form>
+</form> -->
 
 <section class="container">
 	

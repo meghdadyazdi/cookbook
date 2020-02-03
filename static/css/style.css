@@ -5,7 +5,9 @@ body{
 nav,
 .sidenav{
     /* background-color: #00e676; */
-    background-color: #28beb5;
+    /* background-color: #28beb5; */
+    background-color: #0eb382;
+    /* background-color: #00af7b */
 }
 
 .btn, .btn-large, .btn-small {
