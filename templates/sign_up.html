@@ -14,14 +14,14 @@
 <div class="row">
 	<form method=POST class="col s12">
 		<div class="row">
-			<div class="input-field col s4 push-s4">
+			<div class="input-field col m4 push-m4">
 				<i class="material-icons prefix">account_circle</i>
 				<label for="exampleInputEmail1" >Username</label>
                     <input type="text" class="form-control" name="username" placeholder="Username" required>
 			</div>
 		</div>
 		<div class="row">
-			<div class="input-field col s4 push-s4">
+			<div class="input-field col m4 push-m4">
 				<i class="material-icons prefix">vpn_key</i>
 				<label for="exampleInputPassword1">Password</label>
                     <input type="password" class="form-control" name="pass" placeholder="Password" required>
@@ -29,13 +29,13 @@
 		</div>
         {% if invalid_username %}
 				<div class="row">
-					<div class="input-field col s4 push-s4">
+					<div class="input-field col m4 push-m5">
 						<p class="">This username already exists!</p>
 					</div>
 				</div>
 		{% endif %}
 		<div class="row">
-			<div class="input-field col s4 push-s4">
+			<div class="input-field col m4 push-m5">
 				<button type="submit" class="btn btn-primary btn-block">Register</button>
 			</div>
 		</div>

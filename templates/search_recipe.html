@@ -5,18 +5,19 @@
 
 
 
-<form action="{{ url_for('search_recipe') }}" method="POST" class="col s3 search_form">
-	<div class="row">
-		<div class="input-field col s6 push-s3">
-			<input id="search_recipe" name="search_recipe" class="validate" placeholder="Find your recipe ..." required>
-			<label class="label-icon" for="search_recipe"><i class="material-icons">search</i></label>
-			<div class="row">
-				<div class="input-field col s4 push-s5">
+<form action="{{ url_for('search_recipe') }}" method="POST" class="col m3 search_form">
+<div class="row">
+        <div class="input-field col s10 push-s1 m6 push-m3">
+          <input id="search_recipe" name="search_recipe" class="validate" placeholder="Find your recipe ..." required>
+          <label class="label-icon" for="search_recipe"><i class="material-icons">search</i></label>
+          <div class="row">
+				<div class="input-field col s4 push-s4 m4 push-m5">
 					<button type="submit" class="btn btn-primary btn-block">Search</button>
 				</div>
 			</div>
-		</div>
-	</div>
+        </div>
+        
+            </div>
 </form>
 
 {% if recipes_search[0] %}

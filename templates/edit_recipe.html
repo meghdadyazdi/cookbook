@@ -8,7 +8,7 @@
 <div class="row">
 	<form action="{{ url_for('update_recipe', recipe_id=user_recipe._id) }}" method="POST" class="col s12">
 		<div class="row">
-			<div class="input-field col s4 push-s4">
+			<div class="input-field col s10 push-s1 m6 push-m3">
 				<select id="recipe_meal" name="recipe_meal">
                     {% if user_recipe.recipe_meal == 'Breakfast' %}
                     <option value="" disabled >Choose a time for this recipe</option>
@@ -47,28 +47,28 @@
 		</div>
 
 		<div class="row">
-			<div class="input-field col s4 push-s4">
+			<div class="input-field col s10 push-s1 m6 push-m3">
 				<input id="recipe_name" name="recipe_name" class="validate" value="{{user_recipe.recipe_name}}">
 				<label for="recipe_name"><i>Name</i></label>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="input-field col s4 push-s4">
+			<div class="input-field col s10 push-s1 m6 push-m3">
 				<textarea id="recipe_ingredients" name="recipe_ingredients" class="validate" >{{user_recipe.recipe_ingredients}}</textarea>
 				<label for="recipe_ingredients"><i>Ingredient</i></label>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="input-field col s4 push-s4">
+			<div class="input-field col s10 push-s1 m6 push-m3">
 				<textarea id="recipe" name="recipe"  class="validate">{{user_recipe.recipe}}</textarea>
 				<label for="recipe"><i>Explain How you make this food</i></label>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="input-field col s4 push-s4">
+			<div class="input-field col s10 push-s1 m6 push-m3">
 				<select id="recipe_energy" name="recipe_energy">
                     {% if user_recipe.recipe_energy == 'low calories' %}
                     <option value="" disabled>How much Energy does this food have?</option>
@@ -97,21 +97,21 @@
 		</div>
 
 		<div class="row">
-			<div class="input-field col s4 push-s4">
+			<div class="input-field col s10 push-s1 m6 push-m3">
 				<textarea id="recipe_photo" name="recipe_photo" class="validate">{{user_recipe.recipe_photo}}</textarea>
 				<label for="recipe_photo"><i>Any link of a Photo for this food?</i></label>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="input-field col s4 push-s4">
+			<div class="input-field col s10 push-s1 m6 push-m3">
 				<textarea id="recipe_video" name="recipe_video" class="validate">{{user_recipe.recipe_video}}</textarea>
 				<label for="recipe_video"><i>Any link of a Video for this food?</i></label>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="input-field col s4 push-s4">
+			<div class="input-field col s10 push-s1 m6 push-m3">
 				<select id="recipe_username" name="recipe_username">
                     <option value="{{active_user}}" selected>{{active_user}}</option>
                 </select>
@@ -120,7 +120,7 @@
 		</div>
 
 		<div class="row">
-			<div class="input-field col s4 push-s4">
+			<div class="input-field col s10 push-s1 m6 push-m3">
 				<button class="btn waves-effect waves-light" type="submit">Edit  recipe
                 <i class="material-icons right">playlist_add</i>
                 </button>

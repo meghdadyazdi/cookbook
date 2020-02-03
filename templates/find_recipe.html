@@ -8,14 +8,13 @@
 
 
 
-<form action="{{ url_for('search_recipe') }}" method="POST" class="col s3 search_form">
+<form action="{{ url_for('search_recipe') }}" method="POST" class="col m3 search_form">
 <div class="row">
-        <div class="input-field col s6 push-s3">
+        <div class="input-field col s10 push-s1 m6 push-m3">
           <input id="search_recipe" name="search_recipe" class="validate" placeholder="Find your recipe ..." required>
           <label class="label-icon" for="search_recipe"><i class="material-icons">search</i></label>
-          <!-- <i class="material-icons">close</i> -->
           <div class="row">
-				<div class="input-field col s4 push-s5">
+				<div class="input-field col s4 push-s4 m4 push-m5">
 					<button type="submit" class="btn btn-primary btn-block">Search</button>
 				</div>
 			</div>
@@ -48,7 +47,7 @@
 				<div class="input-field col s3">
 					<img src="{{recipe.recipe_photo}}" alt="{{recipe.recipe_name}}" width="150" height="150">
                 </div>
-				<div class="input-field col s9">
+				<div class="input-field col s6 push-s1">
 						{%if "{{recipe.recipe_meal}}"%}
 						<p> <strong>{{recipe.recipe_name}}:</strong>This food has
 							<strong> {{recipe.recipe_energy}} </strong>
