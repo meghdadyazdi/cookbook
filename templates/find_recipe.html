@@ -1,73 +1,52 @@
-{% extends 'base.html' %}
-
-{%block recipe%}
-
-
-
-
-
-
+{% extends 'base.html' %} {%block recipe%}
 
 <form action="{{ url_for('search_recipe') }}" method="POST" class="col m3 search_form">
-<div class="row">
-        <div class="input-field col s10 push-s1 m6 push-m3">
-          <input id="search_recipe" name="search_recipe" class="validate" placeholder="Find your recipe ..." required>
-          <label class="label-icon" for="search_recipe"><i class="material-icons">search</i></label>
-          <div class="row">
-				<div class="input-field col s4 push-s4 m4 push-m5">
-					<button type="submit" class="btn btn-primary btn-block">Search</button>
-				</div>
-			</div>
-        </div>
-        
-            </div>
-</form>
-
-
-
-<!-- <form action="{{ url_for('search_recipe') }}" method="POST" class="col s3 search_form">
 	<div class="row">
-		<div class="input-field col s6 push-s3">
-			<i class="material-icons prefix">search</i>
-			<input id="search_recipe" name="search_recipe" class="validate">
-			<label for="search_recipe"><i>Find a recipe here ...</i></label>
+		<div class="input-field col s10 push-s1 m6 push-m3">
+			<input id="search_recipe" name="search_recipe" class="validate" placeholder="Find your recipe ..." required>
+			<label class="label-icon" for="search_recipe"><i class="material-icons">search</i></label>
 			<div class="row">
-				<div class="input-field col s4 push-s5">
+				<div class="input-field col s4 push-s4 m4 push-m5">
 					<button type="submit" class="btn btn-primary btn-block">Search</button>
 				</div>
 			</div>
 		</div>
 	</div>
-</form> -->
+</form>
 
 <section class="container">
-	
-			{% for recipe in recipes %}
-			<div class="row">
-				<div class="input-field col s3">
-					<img src="{{recipe.recipe_photo}}" alt="{{recipe.recipe_name}}" width="150" height="150">
-                </div>
-				<div class="input-field col s6 push-s1">
-						{%if "{{recipe.recipe_meal}}"%}
-						<p> <strong>{{recipe.recipe_name}}:</strong>This food has
-							<strong> {{recipe.recipe_energy}} </strong>
-							and is recomended for <strong>{{recipe.recipe_meal}}</strong></p>
-						{% else %}
-						<p><strong>{{recipe.recipe_name}}: </strong>This food has
-							<strong>{{recipe.recipe_energy}} </strong> and
-							is recomended to have in any <strong>meals</strong></p>
-						{% endif %}
-				</div>
-				<div class="row"><strong>Ingredients:</strong> {{recipe.recipe_ingredients}}</div>
-				<div class="row"><strong>Recipe:</strong> {{recipe.recipe}}</div>
-				{%if "{{recipe.recipe_video}}"%}
-				<!-- <iframe width="145" height="110" src="{{recipe.recipe_video}}"></iframe> -->
+	   {% for recipe in recipes %}
+	   <div class="row">
+		    <div class="input-field col s12 m3">
+			    <img src="{{recipe.recipe_photo}}" alt="{{recipe.recipe_name}}" width="150" height="150">
+            </div>
+			<div class="input-field col s12 m6 push-m1">
+				{%if "{{recipe.recipe_meal}}"%}
+				<p> <strong>{{recipe.recipe_name}}:</strong>This food has
+					<strong> {{recipe.recipe_energy}} </strong>
+					and is recomended for <strong>{{recipe.recipe_meal}}</strong></p>
+				{% else %}
+				<p><strong>{{recipe.recipe_name}}: </strong>This food has
+					<strong>{{recipe.recipe_energy}} </strong> and
+					is recomended to have in any <strong>meals</strong></p>
 				{% endif %}
-				<hr>
-		
-	</div>
-	{% endfor %}
+			</div>
+			<div class="row">
+            <div class="col s12">
+				<strong>Ingredients:</strong> {{recipe.recipe_ingredients}}
+			</div>
+            </div>
+			<div class="row">
+            <div class="col">
+				<strong>Recipe:</strong> {{recipe.recipe}}
+			</div>
+            </div>
+			{%if "{{recipe.recipe_video}}"%}
+			<!-- <iframe width="145" height="110" src="{{recipe.recipe_video}}"></iframe> -->
+			{% endif %}
+			<hr>
+		</div>
+		{% endfor %}
 </section>
-
 
 {%endblock%}
