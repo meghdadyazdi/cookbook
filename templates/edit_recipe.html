@@ -48,21 +48,21 @@
 
 		<div class="row">
 			<div class="input-field col s10 push-s1 m6 push-m3">
-				<input id="recipe_name" name="recipe_name" class="validate" value="{{user_recipe.recipe_name}}">
+				<input id="recipe_name" name="recipe_name" type="text" class="validate" value="{{user_recipe.recipe_name}}">
 				<label for="recipe_name"><i>Name</i></label>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="input-field col s10 push-s1 m6 push-m3">
-				<textarea id="recipe_ingredients" name="recipe_ingredients" class="validate" >{{user_recipe.recipe_ingredients}}</textarea>
+				<textarea id="recipe_ingredients" name="recipe_ingredients" class="materialize-textarea validate" >{{user_recipe.recipe_ingredients}}</textarea>
 				<label for="recipe_ingredients"><i>Ingredient</i></label>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="input-field col s10 push-s1 m6 push-m3">
-				<textarea id="recipe" name="recipe"  class="validate">{{user_recipe.recipe}}</textarea>
+				<textarea id="recipe" name="recipe"  class="materialize-textarea validate">{{user_recipe.recipe}}</textarea>
 				<label for="recipe"><i>Explain How you make this food</i></label>
 			</div>
 		</div>
@@ -98,14 +98,14 @@
 
 		<div class="row">
 			<div class="input-field col s10 push-s1 m6 push-m3">
-				<textarea id="recipe_photo" name="recipe_photo" class="validate">{{user_recipe.recipe_photo}}</textarea>
+				<textarea id="recipe_photo" name="recipe_photo" class="materialize-textarea validate">{{user_recipe.recipe_photo}}</textarea>
 				<label for="recipe_photo"><i>Any link of a Photo for this food?</i></label>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="input-field col s10 push-s1 m6 push-m3">
-				<textarea id="recipe_video" name="recipe_video" class="validate">{{user_recipe.recipe_video}}</textarea>
+				<textarea id="recipe_video" name="recipe_video" class="materialize-textarea validate">{{user_recipe.recipe_video}}</textarea>
 				<label for="recipe_video"><i>Any link of a Video for this food?</i></label>
 			</div>
 		</div>
