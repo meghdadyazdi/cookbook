@@ -77,10 +77,10 @@ def search_recipe():
 
     if SR:
         return render_template("search_recipe.html",
-                           recipes_search=SR, recipes=mongo.db.recipes.find(), active_user=session['username'])
+                           recipes_search=SR, recipes=mongo.db.recipes.find())
     else:
         return render_template("search_recipe.html",
-                           recipes_search=SR, recipes=mongo.db.recipes.find(), active_user=session['username'], no_recipe=True)
+                           recipes_search=SR, recipes=mongo.db.recipes.find(), no_recipe=True)
 
 
 @app.route('/logout', methods=['POST', 'GET'])
