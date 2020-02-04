@@ -6,14 +6,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>CooKBooK</title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
 		integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 	<!-- <link href="tyle.css"> -->
 	<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
 </head>
 
-<body>
+<body id="site-content">
 
 	<nav>
 		<div class="nav-wrapper">
@@ -41,8 +41,7 @@
 			<ul class="sidenav" id="mobile-demo">
 				{% if active_user%}
 				<li><a href="{{url_for('add_recipe')}}"><i class="material-icons left">add</i>Add recipe</a></li>
-				<li><a class="" href="#!"
-						data-target=""><b>{{active_user}}</b></a>
+				<li><a class="" href="#!" data-target=""><b>{{active_user}}</b></a>
 				</li>
 				<li>
 					<ul class="side_inn_list">
@@ -65,27 +64,96 @@
 		<div class="">
 			<div class="row">
 				<div class="col l6 s12">
-					<h5 class="white-text">Footer Content</h5>
+					<h5 class="white-text">CooKBooK</h5>
 					<p class="grey-text text-lighten-4"></p>
 				</div>
 				<div class="col l4 offset-l2 s12">
-					<h5 class="white-text">Links</h5>
+					<p class="white-text">This application is made to help food lovers find their desire recipes.</p>
 					<ul>
-						<li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-						<li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-						<li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-						<li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+						<li><a href="https://github.com/meghdadyazdi" target="_blank"><i class="fab fa-github"></i></a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
-		<div class="footer-copyright">
-			<div class="">
+		<div class="row footer-copyright">
+			<div class="col">
 				© 2020 Copyright
-				<a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+					<i>Meghdad</i>
 			</div>
 		</div>
 	</footer>
+
+
+
+	<!-- <footer class="footer-distributed">
+
+		<div class="footer-left">
+
+			<h3>WebDev<span>Trick</span></h3>
+
+			<p class="footer-links">
+				<a href="#">Home</a>
+				·
+				<a href="#">Blog</a>
+				·
+				<a href="#">Pricing</a>
+				·
+				<a href="#">About</a>
+				·
+				<a href="#">Faq</a>
+				·
+				<a href="#">Contact</a>
+			</p>
+
+			<p class="footer-company-name">webdevtrick &copy; 2019</p>
+		</div>
+
+		<div class="footer-center">
+
+			<div>
+				<i class="fa fa-map-marker"></i>
+				<p><span>21 Revolution Street</span> Delhi, India</p>
+			</div>
+
+			<div>
+				<i class="fa fa-phone"></i>
+				<p>+1 555 123456</p>
+			</div>
+
+			<div>
+				<i class="fa fa-envelope"></i>
+				<p><a href="mailto:support@company.com">contact@webdevtrick.com</a></p>
+			</div>
+
+		</div>
+
+		<div class="footer-right">
+
+			<p class="footer-company-about">
+				<span>About the company</span>
+				Web Dev Trick is a blog for web designers, graphic designers, web developers &amp; SEO Learner.
+			</p>
+
+			<div class="footer-icons">
+
+				<a href="#"><i class="fa fa-facebook"></i></a>
+				<a href="#"><i class="fa fa-twitter"></i></a>
+				<a href="#"><i class="fa fa-linkedin"></i></a>
+				<a href="#"><i class="fa fa-github"></i></a>
+
+			</div>
+
+		</div>
+
+	</footer> -->
+
+
+
+
+
+
+
+
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
 		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

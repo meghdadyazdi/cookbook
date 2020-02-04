@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {%block recipe%}
 
-<form action="{{ url_for('search_recipe') }}" method="POST" class="col m3 search_form">
+<form action="{{ url_for('search_recipe') }}" method="POST" class="col m3 search_form" id="site-content">
 	<div class="row">
 		<div class="input-field col s10 push-s1 m6 push-m3">
 			<div class="nav-wrapper">
@@ -30,21 +30,21 @@
 
 
 
-<section class="container">
+<section class="container" id="site-content">
 	{% for recipe in recipes %}
 	<div class="row">
 		<div class="input-field col s12 m3">
 			<img src="{{recipe.recipe_photo}}" alt="{{recipe.recipe_name}}" width="150" height="150">
             </div>
 			<div class="input-field col s12 m6 push-m1">
-				{%if "{{recipe.recipe_meal}}"%}
-				<p> <strong>{{recipe.recipe_name}}:</strong>This food has
-					<strong> {{recipe.recipe_energy}} </strong>
-					and is recomended for <strong>{{recipe.recipe_meal}}</strong></p>
+				{%if recipe.recipe_meal%}
+                <div class="capital"><p> <strong>{{recipe.recipe_name}}</strong></div>
+                <div class=""><p><strong> Energy:</strong><i> {{recipe.recipe_energy}} </i></div>                			
+				<i> {{recipe.recipe_meal}}</i></p>
 				{% else %}
-				<p><strong>{{recipe.recipe_name}}: </strong>This food has
+				<!-- <p><strong>{{recipe.recipe_name}}: </strong>This food has
 					<strong>{{recipe.recipe_energy}} </strong> and
-					is recomended to have in any <strong>meals</strong></p>
+					is recomended to have in any <strong>meals</strong></p> -->
 				{% endif %}
 			</div>
 			<div class="row">
