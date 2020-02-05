@@ -44,6 +44,11 @@ nav,
     margin-left: 50px;
 }
 
+.col .row {
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+}
+
 .input-field.col label {
     left: 1rem;
 }

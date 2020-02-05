@@ -3,6 +3,7 @@ from flask import Flask, render_template, redirect, session, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import bcrypt
+import re
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'task_manager'
@@ -75,6 +76,30 @@ def search_recipe():
                           ('recipe_ingredients', 'text'), ('recipe_energy', 'text')],name="search_index", weights={'title': 100, 'body': 25})
     SR = recipes.find({'$text': {'$search': request.form.get('search_recipe')}})
 
+    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    # search_recipe = re.compile(f"/{request.form.get('search_recipe')}/", re.IGNORECASE)
+
+    # SR = recipes.find({'$text': {'$regex': search_recipe}})
+
+    # for each in SR :
+    #     print(each)
+    # recipes.create_index([
+    # 'recipe_meal',
+    # 'recipe_name',
+    # 'recipe',
+    # 'recipe_ingredients',
+    # 'recipe_energy'
+    #   ], name="search_index"
+    #  )
+    # SR = recipes.find({"search_index": re.compile(request.form.get('search_recipe'))})
+    # SR = recipes.find({"search_index": {'$regex': re.compile(request.form.get('search_recipe'))}})
+
+    # search_recipe = re.compile(f"/{request.form.get('search_recipe')}/", re.IGNORECASE)
+    # SR = recipes.find({"search_index": {'$regex': search_recipe}})
+
+    # for each in SR:
+    #     print(each)
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     if SR:
         return render_template("search_recipe.html",
                            recipes_search=SR, recipes=mongo.db.recipes.find())

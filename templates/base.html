@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>CooKBooK</title>
+	<title>CooKBooK<i class="fas fa-utensils"></i></title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
 		integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
@@ -13,13 +13,13 @@
 	<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
 </head>
 
-<body id="site-content">
+<body>
 
 	<nav>
 		<div class="nav-wrapper">
 			<a href="{{url_for('find_recipe')}}" data-target="mobile-demo"
 				class="sidenav-trigger"><i class="material-icons">menu</i></a>
-			<a href="{{url_for('find_recipe')}}" class="brand-logo">CooKBooK</a>
+			<a href="{{url_for('find_recipe')}}" class="brand-logo">CooKBooK<span><i class="fas fa-utensils"></i></span></a>
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
 				<li><a href="{{url_for('find_recipe')}}">Home</a></li>
 				{% if active_user%}
