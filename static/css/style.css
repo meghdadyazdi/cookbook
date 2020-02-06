@@ -128,6 +128,10 @@ footer a{
     font-size: 40px
 }
 
+.footer-copyright{
+    margin: 0 !important;
+}
+
 
 /* footer {
 	position: fixed;
@@ -297,3 +301,101 @@ footer a{
  
 } */
 
+
+
+
+
+
+
+
+.single-container {
+    -webkit-box-shadow: 0px 0px 0px -200px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 0px -200px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 0px -200px rgba(0,0,0,0.75);
+}
+    
+
+
+.single-row{
+    margin-top: 5rem;
+    margin-bottom: 6rem
+}
+
+.single-card-recipe{
+    height: 80% !important;
+}
+
+
+
+.single-card-recipe{
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.15);
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.15);
+}
+
+.single-card-recipe:hover{
+    -webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,.2);
+    -moz-box-shadow: 0px 0px 6px 0px rgba(0,0,0,.2);
+    box-shadow: 0px 0px 6px 0px rgba(0,0,0,.2);
+}
+
+
+
+
+
+
+
+
+.single-img {
+  border-radius: 10px 10px 0 0;
+  width:50%;
+  height: 30%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.boxxx {
+   position: relative;
+   
+   background: #eee;
+   color: #000;
+   padding: 20px;
+}
+
+/* .boxxx:hover {
+   cursor: hand;
+   cursor: pointer;
+   opacity: .9;
+} */
+
+.divLinkkk {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+   text-decoration: none;
+   /* Makes sure the link doesn't get underlined */
+   z-index: 10;
+   /* raises anchor tag above everything else in div */
+   background-color: white;
+   /*workaround to make clickable in IE */
+   opacity: 0;
+   /*workaround to make clickable in IE */
+   filter: alpha(opacity=0);
+   /*workaround to make clickable in IE */
+}
+
+
+
+
+
+/* _______________________________media query__________________________ */
+
+@media only screen and (max-width: 601px){
+.single-img {
+  width:100%;
+  height: 50%;
+}
+}

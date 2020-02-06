@@ -22,8 +22,7 @@ def find_recipe():
     # else:
     #     return render_template("find_recipe.html",
     #                        recipes=mongo.db.recipes.find())
-    return render_template("find_recipe.html",
-                           recipes=mongo.db.recipes.find())
+    return render_template("find_recipe.html", recipes=mongo.db.recipes.find())
 
 
 @app.route('/sign_in', methods=["POST", "GET"])
@@ -72,9 +71,27 @@ def insert_recipe():
 @app.route('/search_recipe', methods=['POST', 'GET'])
 def search_recipe():
     recipes = mongo.db.recipes
+    # recipes.create_index([('recipe_meal', 'text'), ('recipe_name', 'text'), ('recipe', 'text'),
+    #                       ('recipe_ingredients', 'text'), ('recipe_energy', 'text')],name="search_index", weights={'title': 100, 'body': 25})
     recipes.create_index([('recipe_meal', 'text'), ('recipe_name', 'text'), ('recipe', 'text'),
                           ('recipe_ingredients', 'text'), ('recipe_energy', 'text')],name="search_index", weights={'title': 100, 'body': 25})
     SR = recipes.find({'$text': {'$search': request.form.get('search_recipe')}})
+
+    # start ='.*'
+    # end = '.*'
+
+    # pattern = start + re.escape(request.form.get('search_recipe')) + end
+   
+    # pattern=re.compile(r'.*eg.*')
+    # print(pattern)
+
+
+    # login_user = users.find_one({'username': request.form.get('username')})
+
+
+    # SR = recipes.find({'recipe': request.form.get('search_recipe')})
+
+    # print(re.compile(request.form.get('search_recipe')))
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # search_recipe = re.compile(f"/{request.form.get('search_recipe')}/", re.IGNORECASE)
@@ -115,23 +132,19 @@ def logout():
 
 @app.route('/my_recipe')
 def my_recipe():
-    # return render_template("my_recipe.html",
-    #                        my_recipes=mongo.db.recipes.find({"recipe_username": session['username']}), active_user=session['username'])
     return render_template("my_recipe.html",
                            my_recipes=mongo.db.recipes.find({"recipe_username": session['username']}))
 
 
-
-
-
-
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
-    # return render_template('edit_recipe.html', user_recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}),
-    #                                       recipes=mongo.db.recipes.find(),
-    #                                       active_user=session['username'])
     return render_template('edit_recipe.html', user_recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}),
                                           recipes=mongo.db.recipes.find())
+
+
+@app.route('/one_recipe/<recipe_id>')
+def one_recipe(recipe_id):
+    return render_template('one_recipe.html', recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}))
 
 
 @app.route('/update_recipe/<recipe_id>', methods=['POST', 'GET'])
@@ -157,6 +170,11 @@ def update_recipe(recipe_id):
 def delete_recipe(recipe_id):
     mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
     return redirect(url_for('my_recipe'))
+
+# @app.route('/delete_recipe/<recipe_id>')
+# def delete_recipe(recipe_id):
+#     mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
+#     return redirect(url_for('my_recipe'))
 
 @app.context_processor
 def inject_user():

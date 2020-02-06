@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
-
 {%block recipe%}
+
+
+
 
 
 <section class="container">
@@ -18,7 +20,7 @@
 			<div class="input-field col s12 m6 push-m1">
 				{%if recipe.recipe_meal%}
                 <div class="capital"><p> <strong>{{recipe.recipe_name}}</strong></div>
-                <div class=""><p><strong> Energy:</strong><i> {{recipe.recipe_energy}} </i></div>                			
+                <div class="capital"><p><strong> Energy:</strong><i> {{recipe.recipe_energy}} </i></div>               			
 				<i> {{recipe.recipe_meal}}</i></p>
 				{% else %}
 				{% endif %}

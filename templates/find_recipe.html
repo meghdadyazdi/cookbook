@@ -1,7 +1,8 @@
-{% extends 'base.html' %} {%block recipe%}
+{% extends 'base.html' %}
+{%block recipe%}
 
 <form action="{{ url_for('search_recipe') }}" method="POST" class="col m3 search_form" id="site-content">
-	<div class="row">
+	<div class="row m0">
 		<div class="input-field col s10 push-s1 m6 push-m3">
 			<div class="nav-wrapper">
 
@@ -22,11 +23,13 @@
 	</div>
 </form>
 
+
+
 <section class="container">
 	<div class="row">
 	{% for recipe in recipes %}
 
-		<div class="col s12 m6 xl4 card-recipe p0 m0">
+		<div class="col s12 m6 xl4 card-recipe p0 m0 boxxx">
 			<img src="{{recipe.recipe_photo}}" alt="{{recipe.recipe_name}}" style="">
 			<div class="card-container capital">
 				<h6 class="no-flow"><b>{{recipe.recipe_name}}</b></h6>
@@ -40,9 +43,13 @@
 						<strong>Recipe:</strong> {{recipe.recipe}}
 					</p>
 			</div>
+            <a class="divLinkkk" href="{{url_for('one_recipe', recipe_id=recipe._id)}}"></a>
 		</div>
 		{% endfor %}
 	</div>
 </section>
 
 {%endblock%}
+
+
+
