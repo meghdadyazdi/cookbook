@@ -26,12 +26,12 @@
 	<div class="row">
 	{% for recipe in recipes %}
 
-		<div class="col s12 m4 card-recipe">
+		<div class="col s12 m6 xl4 card-recipe p0 m0">
 			<img src="{{recipe.recipe_photo}}" alt="{{recipe.recipe_name}}" style="">
 			<div class="card-container capital">
-				<h6><b>{{recipe.recipe_name}}</b></h6>
-				<p><strong> Energy:</strong><i> {{recipe.recipe_energy}} </i></p>
-				<p>{{recipe.recipe_meal}}</p>
+				<h6 class="no-flow"><b>{{recipe.recipe_name}}</b></h6>
+				<p class="no-flow"><strong> Energy:</strong><i> {{recipe.recipe_energy}} </i></p>
+				<p class="no-flow">{{recipe.recipe_meal}}</p>
 				
 					<p class="no-flow">
 						<strong>Ingredients:</strong> {{recipe.recipe_ingredients}}
@@ -39,7 +39,6 @@
 					<p class="no-flow">
 						<strong>Recipe:</strong> {{recipe.recipe}}
 					</p>
-				
 			</div>
 		</div>
 		{% endfor %}
