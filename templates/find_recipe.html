@@ -22,44 +22,28 @@
 	</div>
 </form>
 
-
-
-
-
-
-
-
-
-<section class="container" id="site-content">
-	{% for recipe in recipes %}
+<section class="container">
 	<div class="row">
-		<div class="input-field col s12 m3">
-			<img src="{{recipe.recipe_photo}}" alt="{{recipe.recipe_name}}" width="150" height="150">
-            </div>
-			<div class="input-field col s12 m6 push-m1">
-				{%if recipe.recipe_meal%}
-                <div class="capital"><p> <strong>{{recipe.recipe_name}}</strong></div>
-                <div class=""><p><strong> Energy:</strong><i> {{recipe.recipe_energy}} </i></div>                			
-				<i> {{recipe.recipe_meal}}</i></p>
-				{% else %}
-				{% endif %}
+	{% for recipe in recipes %}
+
+		<div class="col s12 m4 card-recipe">
+			<img src="{{recipe.recipe_photo}}" alt="{{recipe.recipe_name}}" style="">
+			<div class="card-container capital">
+				<h6><b>{{recipe.recipe_name}}</b></h6>
+				<p><strong> Energy:</strong><i> {{recipe.recipe_energy}} </i></p>
+				<p>{{recipe.recipe_meal}}</p>
+				
+					<p class="no-flow">
+						<strong>Ingredients:</strong> {{recipe.recipe_ingredients}}
+					</p>
+					<p class="no-flow">
+						<strong>Recipe:</strong> {{recipe.recipe}}
+					</p>
+				
 			</div>
-			<div class="row">
-				<div class="col s12">
-					<strong>Ingredients:</strong> {{recipe.recipe_ingredients}}
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<strong>Recipe:</strong> {{recipe.recipe}}
-				</div>
-			</div>
-			{%if "{{recipe.recipe_video}}"%}
-			<!-- <iframe width="145" height="110" src="{{recipe.recipe_video}}"></iframe> -->
-			{% endif %}
-			<hr>
 		</div>
 		{% endfor %}
+	</div>
 </section>
 
 {%endblock%}
