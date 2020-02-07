@@ -32,7 +32,26 @@ $(document).ready(function() {
     };
     
 
-    
+    $("#signinDrop").click(function () {
+        $("#signinBox").hide(1000);
+
+
+
+        if ($('#signinBox').is(':visible')) {
+            $("#signinBox").css( "visibility", "hidden");
+        } else {
+             $("#signinBox").css( "visibility", "visible");
+             $("#signinBox").css( "display", "block");
+        };
+
+
+
+
+
+        // $("#signinBox").css( "transform", "translateY(0)");
+        // $("#signinBox").css( "z-index", "9999");
+    });
+
 
     // Or use this to Open link in same window (similar to target=_blank)
     $(".boxxx").click(function(){

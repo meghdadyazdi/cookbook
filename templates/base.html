@@ -19,7 +19,8 @@
 		<div class="nav-wrapper">
 			<a href="{{url_for('find_recipe')}}" data-target="mobile-demo"
 				class="sidenav-trigger"><i class="material-icons">menu</i></a>
-			<a href="{{url_for('find_recipe')}}" class="brand-logo">CooKBooK<span><i class="fas fa-utensils"></i></span></a>
+			<a href="{{url_for('find_recipe')}}"
+				class="brand-logo">CooKBooK<span><i class="fas fa-utensils"></i></span></a>
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
 				<li><a href="{{url_for('find_recipe')}}">Home</a></li>
 				{% if active_user%}
@@ -34,8 +35,65 @@
 						data-target="dropdown1"><b>{{active_user}}</b><i class="material-icons right">arrow_drop_down</i></a>
 				</li>
 				{% else %}
-				<li><a href="{{url_for('sign_in')}}">Sign in<span><i class="fas fa-sign-in-alt"></i></span></a></li>
-				<li><a href="{{url_for('sign_up')}}">Sign up<span><i class="fas fa-sign-out-alt"></i></span></a></li>
+
+                
+                <li id="signinDrop"><a  href="#!">Test<i class="material-icons right">arrow_drop_down</i></a>
+				</li>
+
+
+
+                <div id="signinBox">
+                drop down
+                
+                </div>
+
+                
+
+
+				<li>Sign in
+					<ul id="dropdown1" class="dropdown-content">
+						<li>
+							<div class="row">
+								<form action="{{ url_for('sign_in') }}" method=POST class="col s12">
+									<div class="row">
+										<div class="input-field col ">
+											<i class="material-icons prefix">account_circle</i>
+											<label for="exampleInputEmail1" >Username</label>
+											<input type="text" class="form-control" name="username" placeholder="Username" required>
+		                                </div>
+										</div>
+										<div class="row">
+											<div class="input-field col ">
+												<i class="material-icons prefix">vpn_key</i>
+												<label for="exampleInputPassword1">Password</label>
+												<input type="password" class="form-control" name="pass" placeholder="Password" required>
+		                                	</div>
+											</div>
+											{% if invalid_username %}
+											<div class="row">
+												<div class="input-field col ">
+													<p class="">This username already exists!</p>
+												</div>
+											</div>
+											{% endif %}
+											<div class="row">
+												<div class="input-field col ">
+													<button type="submit" class="btn btn-primary btn-block">Log in</button>
+												</div>
+											</div>
+								</form>
+							</div>
+						</li>
+					</ul>
+				</li>
+				<li><a class="dropdown-trigger" href="#!"
+						data-target="dropdown1"><i class="material-icons right">arrow_drop_down</i></a>
+
+
+
+
+
+
 				{% endif %}
 			</ul>
 			<ul class="sidenav" id="mobile-demo">
@@ -70,7 +128,8 @@
 				<div class="col l4 offset-l2 s12">
 					<p class="white-text">This application is made to help food lovers find their desire recipes.</p>
 					<ul>
-						<li><a href="https://github.com/meghdadyazdi" target="_blank"><i class="fab fa-github"></i></a></li>
+						<li><a href="https://github.com/meghdadyazdi" target="_blank"><i class="fab fa-github"></i></a>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -78,7 +137,7 @@
 		<div class="row footer-copyright">
 			<div class="col">
 				© 2020 Copyright
-					<i>Meghdad</i>
+				<i>Meghdad</i>
 			</div>
 		</div>
 	</footer>
