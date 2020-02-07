@@ -340,12 +340,6 @@ footer a{
 }
 
 
-
-
-
-
-
-
 .single-img {
   border-radius: 10px 10px 0 0;
   width:50%;
@@ -356,10 +350,9 @@ footer a{
 }
 
 .boxxx {
-   position: relative;
-   
-   background: #eee;
-   color: #000;
+   position: relative;   
+   /* background: #eee; */
+   /* color: #000; */
    padding: 20px;
 }
 

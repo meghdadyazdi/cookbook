@@ -136,6 +136,11 @@ def my_recipe():
                            my_recipes=mongo.db.recipes.find({"recipe_username": session['username']}))
 
 
+@app.route('/one_my_recipe/<recipe_id>')
+def one_my_recipe(recipe_id):
+    return render_template('one_my_recipe.html', recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}))
+
+
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
     return render_template('edit_recipe.html', user_recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}),
@@ -161,7 +166,7 @@ def update_recipe(recipe_id):
         'recipe_video':request.form.get('recipe_video'),
         'recipe_username':request.form.get('recipe_username')
     })
-    return redirect(url_for('my_recipe'))
+    return redirect(url_for('my_recipe'), )
 
 
 
@@ -182,7 +187,6 @@ def inject_user():
         return dict(active_user=session['username'])
     else:
         return dict()
-
 
 
 
