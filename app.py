@@ -4,6 +4,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import bcrypt
 import re
+from datetime import date
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'task_manager'
@@ -22,7 +23,8 @@ def find_recipe():
     # else:
     #     return render_template("find_recipe.html",
     #                        recipes=mongo.db.recipes.find())
-    return render_template("find_recipe.html", recipes=mongo.db.recipes.find())
+    recipes=mongo.db.recipes.find().sort("recipe_date", -1)
+    return render_template("find_recipe.html", recipes=recipes)
 
 
 @app.route('/sign_in', methods=["POST", "GET"])
@@ -164,7 +166,8 @@ def update_recipe(recipe_id):
         'recipe_energy':request.form.get('recipe_energy'),
         'recipe_photo':request.form.get('recipe_photo'),
         'recipe_video':request.form.get('recipe_video'),
-        'recipe_username':request.form.get('recipe_username')
+        'recipe_username':request.form.get('recipe_username'),
+        'recipe_date':request.form.get('recipe_date')
     })
     return redirect(url_for('my_recipe'), )
 

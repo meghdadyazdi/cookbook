@@ -10,13 +10,14 @@
 			<div class="card-container capital">
 				<h6 class=""><b>{{recipe.recipe_name}}</b></h6>
 				<p class=""><strong> Energy:</strong><i> {{recipe.recipe_energy}} </i></p>
-				<p class="">{{recipe.recipe_meal}}</p>				
-					<p class="">
+				<p class="">{{recipe.recipe_meal}}</p>
+                   	<p class="">
 						<strong>Ingredients:</strong> {{recipe.recipe_ingredients}}
 					</p>
 					<p class="">
 						<strong>Recipe:</strong> {{recipe.recipe}}
 					</p>
+                    <p class=""><i>{{recipe.recipe_date[4:7]+"-"+recipe.recipe_date[8:10]+"-"+recipe.recipe_date[11:15]+" ("+recipe.recipe_date[16:21]+")"}}</i></p>
 			</div>
 		</div>
 	</div>
