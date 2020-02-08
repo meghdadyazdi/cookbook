@@ -482,22 +482,18 @@ button{
 }
 
 #signinBox{
-    height: 200px;
-    visibility: hidden;
-    /* width: 50px; */
+    height: 275px;
+    width: 330px;
     background-color: powderblue;
     margin: 0;
-    padding: 0;
+    padding: 30px;
     position: absolute;
     right: 0;
     top: 64px;
-    width: 150px;
     z-index: 9999;
-    display: block;
-    
+    display: none;    
     box-shadow: 0px 6px 13px 0px rgba(0,0,0,0.2);
-    
-    transform: translateY(0); /*By default it is set off the screen*/
-    transition: display .5s ease-in-out;
+    transition: display 5s ease-in-out;
 
 }
+

@@ -33,14 +33,9 @@ $(document).ready(function() {
     
 
     $("#signinDrop").click(function () {
-        $("#signinBox").hide(1000);
-
-
-
         if ($('#signinBox').is(':visible')) {
-            $("#signinBox").css( "visibility", "hidden");
+            $("#signinBox").css( "display", "none");
         } else {
-             $("#signinBox").css( "visibility", "visible");
              $("#signinBox").css( "display", "block");
         };
 
