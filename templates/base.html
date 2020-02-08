@@ -32,30 +32,31 @@
 					</ul>
 				</li>
 				<li><a class="dropdown-trigger" href="#!"
-						data-target="dropdown1"><b>{{active_user}}</b><i class="material-icons right">arrow_drop_down</i></a>
+						data-target="dropdown1"><b>{{active_user}}</b><span><i class="far fa-user"></i></span><i class="material-icons right">arrow_drop_down</i></a>
 				</li>
 				{% else %}
 
                 
-                <li id="signinDrop"><a  href="#!">Test<i class="material-icons right">arrow_drop_down</i></a>
+                <li id="signinDrop"><a  href="#!">Log in <span><i class="far fa-user"></i></span></a>
+                
 				</li>
 
 
 
-                <div id="signinBox">
-                <div class="row">
+        
+                <div id="signinBox" class="row">
 								<form action="{{ url_for('sign_in') }}" method=POST class="col s12">
 									<div class="row">
 										<div class="input-field col ">
 											<i class="material-icons prefix">account_circle</i>
-											<label for="exampleInputEmail1" >Username</label>
+											<!-- <label for="exampleInputEmail1" >Username</label> -->
 											<input type="text" class="form-control" name="username" placeholder="Username" required>
 		                                </div>
 										</div>
 										<div class="row">
 											<div class="input-field col ">
 												<i class="material-icons prefix">vpn_key</i>
-												<label for="exampleInputPassword1">Password</label>
+												<!-- <label for="exampleInputPassword1">Password</label> -->
 												<input type="password" class="form-control" name="pass" placeholder="Password" required>
 		                                	</div>
 											</div>
@@ -71,16 +72,20 @@
 													<button type="submit" class="btn btn-primary btn-block">Log in</button>
 												</div>
 											</div>
+                                            <!-- <div class="row">
+												<div class="col "> --><a href="{{url_for('sign_up')}}">Sign up<span><i class="fas fa-user-plus"></i></span></a>
+													<p>Or</p><!-- </div>
+											</div> -->
 								</form>
 							</div>
                 
-                </div>
+          
 				{% endif %}
 			</ul>
 			<ul class="sidenav" id="mobile-demo">
 				{% if active_user%}
 				<li><a href="{{url_for('add_recipe')}}"><i class="material-icons left">add</i>Add recipe</a></li>
-				<li><a class="" href="#!" data-target=""><b>{{active_user}}</b></a>
+				<li><a class="" href="#!" data-target=""><b>{{active_user}}<span><i class="far fa-user"></i></span></b></a>
 				</li>
 				<li>
 					<ul class="side_inn_list">
@@ -89,8 +94,8 @@
 					</ul>
 				</li>
 				{% else %}
-				<li><a href="{{url_for('sign_in')}}">Sign in<span><i class="fas fa-sign-in-alt"></i></span></a></li>
-				<li><a href="{{url_for('sign_up')}}">Sign up<span><i class="fas fa-sign-out-alt"></i></span></a></li>
+				<li><a href="{{url_for('sign_in')}}">Sign in<span><i class="far fa-user"></i></span></a></li>
+				<li><a href="{{url_for('sign_up')}}">Sign up<span><i class="fas fa-user-plus"></i></span></a></li>
 				{% endif %}
 			</ul>
 		</div>

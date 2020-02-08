@@ -397,7 +397,6 @@ footer a{
 
 
 
-
 /* _______________________________media query__________________________ */
 
 @media only screen and (max-width: 601px){
@@ -482,9 +481,10 @@ button{
 }
 
 #signinBox{
-    height: 275px;
+    height: 350px;
     width: 330px;
-    background-color: powderblue;
+    border-radius: 10px;
+    background-color: #0eb382;
     margin: 0;
     padding: 30px;
     position: absolute;
