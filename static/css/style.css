@@ -109,9 +109,9 @@ img {
     background-color:#0eb382;
 }
 .container{
-    -webkit-box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.75);
+    /* -webkit-box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.75);
 -moz-box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.75);
-box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 10px -4px rgba(0,0,0,0.75); */
     width: 80vw;
 }
 
@@ -395,6 +395,9 @@ footer a{
 }
 
 
+.main-row{
+    margin-bottom: 10rem !important; 
+}
 
 
 /* _______________________________media query__________________________ */
