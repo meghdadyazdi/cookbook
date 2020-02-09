@@ -66,6 +66,103 @@ $(document).ready(function () {
 
 
 
+    $(".star-1").mouseenter(function () {
+        $(this).addClass("rate1"); 
+    });
+
+    $(".star-2").mouseenter(function () {
+        $(this).addClass("rate2"); 
+        $(".star-1").addClass("rate2");
+        // return false;
+    });
+
+    $(".star-3").mouseenter(function () {
+        $(this).addClass("rate3");
+        $('.star-2').addClass("rate3");
+        $('.star-1').addClass("rate3");
+        // return false;
+    });
+
+    $(".star-4").mouseenter(function () {
+        $(this).addClass("rate4");
+        $('.star-3').addClass("rate4");
+        $('.star-2').addClass("rate4");
+        $('.star-1').addClass("rate4");
+        // return false;
+    });
+
+    $(".star-5").mouseenter(function () {
+        $(this).addClass("rate5");
+        $('.star-4').addClass("rate5");
+        $('.star-3').addClass("rate5");
+        $('.star-2').addClass("rate5");
+        $('.star-1').addClass("rate5");
+        // return false;
+    });
+
+// __________mouse leave___________
+
+    $(".star-1").mouseleave(function () {
+        $(this).removeClass("rate1"); 
+    });
+
+    $(".star-2").mouseleave(function () {
+        $(this).removeClass("rate2"); 
+        $(".star-1").removeClass("rate2");
+        // return false;
+    });
+
+    $(".star-3").mouseleave(function () {
+        $(this).removeClass("rate3");
+        $('.star-2').removeClass("rate3");
+        $('.star-1').removeClass("rate3");
+        // return false;
+    });
+
+    $(".star-4").mouseleave(function () {
+        $(this).removeClass("rate4");
+        $('.star-3').removeClass("rate4");
+        $('.star-2').removeClass("rate4");
+        $('.star-1').removeClass("rate4");
+        // return false;
+    });
+
+    $(".star-5").mouseleave(function () {
+        $(this).removeClass("rate5");
+        $('.star-4').removeClass("rate5");
+        $('.star-3').removeClass("rate5");
+        $('.star-2').removeClass("rate5");
+        $('.star-1').removeClass("rate5");
+        // return false;
+    });
+
+
+    // __________mouse click___________
+
+    $(".star-1").click(function () {
+        $(this).addClass("rate11");
+        var str = $("#recipe_rate11").val();
+        console.log(str);
+        var rate1 = parseInt("str");
+        console.log(rate1);
+        rate1 += 1;
+        console.log(rate1);
+        rate1.toString();
+        console.log(rate1);
+        $("#recipe_rate1").val(rate1)
+    });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

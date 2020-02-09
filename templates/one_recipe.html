@@ -6,18 +6,33 @@
 <section class="container single-container">
 	<div class="row single-row">
 		<div class="col s12 card-recipe p0 m0 single-card-recipe">
-			<img src="{{recipe.recipe_photo}}" alt="{{recipe.recipe_name}}" class="single-img">
+			<img src="{{url_for('photo', photoname=recipe.recipe_photo)}}" alt="{{recipe.recipe_name}}" class="single-img">
 			<div class="card-container capital">
-				<h6 class=""><b>{{recipe.recipe_name}}</b></h6>
-				<p class=""><strong> Energy:</strong><i> {{recipe.recipe_energy}} </i></p>
-				<p class="">{{recipe.recipe_meal}}</p>
-                   	<p class="">
-						<strong>Ingredients:</strong> {{recipe.recipe_ingredients}}
-					</p>
-					<p class="">
-						<strong>Recipe:</strong> {{recipe.recipe}}
-					</p>
-                    <p class=""><i>{{recipe.recipe_date[4:7]+"-"+recipe.recipe_date[8:10]+"-"+recipe.recipe_date[11:15]+" ("+recipe.recipe_date[16:21]+")"}}</i></p>
+				<h6><b>{{recipe.recipe_name}}</b></h6>
+				<p><strong> Energy:</strong><i> {{recipe.recipe_energy}} </i></p>
+				<p>{{recipe.recipe_meal}}</p>
+				<p><strong>Ingredients:</strong> {{recipe.recipe_ingredients}}</p>
+				<p><strong>Recipe:</strong> {{recipe.recipe}}</p>
+				<p><i>{{recipe.recipe_date[4:7]+"-"+recipe.recipe_date[8:10]+"-"+recipe.recipe_date[11:15]+" ("+recipe.recipe_date[16:21]+")"}}</i>
+				</p>
+
+
+				<div class="row">
+					<div class="col">
+						<span><i class="fas fa-star star-1"></i></span>
+						<span><i class="fas fa-star star-2"></i></span>
+						<span><i class="fas fa-star star-3"></i></span>
+						<span><i class="fas fa-star star-4"></i></span>
+						<span><i class="fas fa-star star-5"></i></span>
+					</div>
+				</div>
+
+				<form action="{{ url_for('one_recipe', recipe_id=recipe._id) }}" method="POST" class="col s12 d-none">
+					<input id="recipe_rate11" type="number" name="recipe_rate11" value={{recipe.recipe_rate1}}>
+                </form>
+
+
+
 			</div>
 		</div>
 	</div>

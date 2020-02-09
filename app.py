@@ -17,12 +17,6 @@ app.secret_key = "randomstring123"
 @app.route('/')
 @app.route('/find_recipe')
 def find_recipe():
-    # if session:
-    #     return render_template("find_recipe.html",
-    #                        recipes=mongo.db.recipes.find(), active_user=session['username'])
-    # else:
-    #     return render_template("find_recipe.html",
-    #                        recipes=mongo.db.recipes.find())
     recipes=mongo.db.recipes.find().sort("recipe_date", -1)
     return render_template("find_recipe.html", recipes=recipes)
 
@@ -66,15 +60,33 @@ def add_recipe():
 @app.route('/add_recipe', methods=['POST'])
 def insert_recipe():
     recipes = mongo.db.recipes
-    recipes.insert_one(request.form.to_dict())
+    if 'recipe_photo' in request.files:
+        
+        recipe_photo=request.files['recipe_photo']
+        mongo.save_file(recipe_photo.filename, recipe_photo)
+        recipes.insert_one(
+            {
+        'recipe_meal':request.form.get('recipe_meal'),
+        'recipe_name':request.form.get('recipe_name'),
+        'recipe_ingredients': request.form.get('recipe_ingredients'),
+        'recipe': request.form.get('recipe'),
+        'recipe_energy':request.form.get('recipe_energy'),
+        'recipe_photo':recipe_photo.filename,
+        'recipe_video':request.form.get('recipe_video'),
+        'recipe_username':request.form.get('recipe_username'),
+        'recipe_date':request.form.get('recipe_date')
+        })
+    else:
+        recipes.insert_one(request.form.to_dict())
     return redirect(url_for('my_recipe'))
 
+@app.route('/photo/<photoname>')
+def photo(photoname):
+    return mongo.send_file(photoname)
 
 @app.route('/search_recipe', methods=['POST', 'GET'])
 def search_recipe():
     recipes = mongo.db.recipes
-    # recipes.create_index([('recipe_meal', 'text'), ('recipe_name', 'text'), ('recipe', 'text'),
-    #                       ('recipe_ingredients', 'text'), ('recipe_energy', 'text')],name="search_index", weights={'title': 100, 'body': 25})
     recipes.create_index([('recipe_meal', 'text'), ('recipe_name', 'text'), ('recipe', 'text'),
                           ('recipe_ingredients', 'text'), ('recipe_energy', 'text')],name="search_index", weights={'title': 100, 'body': 25})
     SR = recipes.find({'$text': {'$search': request.form.get('search_recipe')}})
@@ -143,32 +155,54 @@ def one_my_recipe(recipe_id):
     return render_template('one_my_recipe.html', recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}))
 
 
+
+@app.route('/one_recipe/<recipe_id>', methods=['POST', 'GET'])
+def one_recipe(recipe_id):
+    # recipes = mongo.db.recipes
+    # recipes.update_one( {'_id': ObjectId(recipe_id)}, {"$set":
+    #                                                         {
+    #                                                             'recipe_rate1':request.form.get('recipe_rate11')
+    #                                                         }})    
+    return render_template('one_recipe.html', recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}))
+
+
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
     return render_template('edit_recipe.html', user_recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}),
                                           recipes=mongo.db.recipes.find())
 
 
-@app.route('/one_recipe/<recipe_id>')
-def one_recipe(recipe_id):
-    return render_template('one_recipe.html', recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}))
-
-
-@app.route('/update_recipe/<recipe_id>', methods=['POST', 'GET'])
+@app.route('/update_recipe/<recipe_id>', methods=['POST'])
 def update_recipe(recipe_id):
     recipes = mongo.db.recipes
-    recipes.update( {'_id': ObjectId(recipe_id)},
-    {
+    if 'recipe_photo' in request.files:        
+        recipe_photo=request.files['recipe_photo']
+        mongo.save_file(recipe_photo.filename+'new', recipe_photo)
+        recipes.update( {'_id': ObjectId(recipe_id)},
+        {
         'recipe_meal':request.form.get('recipe_meal'),
         'recipe_name':request.form.get('recipe_name'),
         'recipe_ingredients': request.form.get('recipe_ingredients'),
         'recipe': request.form.get('recipe'),
         'recipe_energy':request.form.get('recipe_energy'),
-        'recipe_photo':request.form.get('recipe_photo'),
+        'recipe_photo':recipe_photo.filename,
         'recipe_video':request.form.get('recipe_video'),
         'recipe_username':request.form.get('recipe_username'),
         'recipe_date':request.form.get('recipe_date')
-    })
+        })
+    else:
+        recipes.update( {'_id': ObjectId(recipe_id)},
+        {
+        'recipe_meal':request.form.get('recipe_meal'),
+        'recipe_name':request.form.get('recipe_name'),
+        'recipe_ingredients': request.form.get('recipe_ingredients'),
+        'recipe': request.form.get('recipe'),
+        'recipe_energy':request.form.get('recipe_energy'),
+        'recipe_photo':"",
+        'recipe_video':request.form.get('recipe_video'),
+        'recipe_username':request.form.get('recipe_username'),
+        'recipe_date':request.form.get('recipe_date')
+        })
     return redirect(url_for('my_recipe'), )
 
 
@@ -178,11 +212,6 @@ def update_recipe(recipe_id):
 def delete_recipe(recipe_id):
     mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
     return redirect(url_for('my_recipe'))
-
-# @app.route('/delete_recipe/<recipe_id>')
-# def delete_recipe(recipe_id):
-#     mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
-#     return redirect(url_for('my_recipe'))
 
 @app.context_processor
 def inject_user():

@@ -3,7 +3,7 @@
 
 
 <div class="row">
-	<form action="{{ url_for('add_recipe') }}" method="POST" class="col s12">
+	<form action="{{ url_for('add_recipe') }}" method="POST" class="col s12" enctype="multipart/form-data">
 		<div class="row">
 			<div class="input-field col s10 push-s1 m6 push-m3">
 				<select id="recipe_meal" name="recipe_meal">
@@ -52,15 +52,11 @@
 
 		<div class="row">
 			<div class="input-field col s10 push-s1 m6 push-m3">
-				<textarea id="recipe_photo" name="recipe_photo" class="materialize-textarea validate"></textarea>
-				<label for="recipe_photo"><i>Any link of a Photo for this food?</i></label>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="input-field col s10 push-s1 m6 push-m3">
-				<textarea id="recipe_video" name="recipe_video" class="materialize-textarea validate"></textarea>
-				<label for="recipe_video"><i>Any link of a Video for this food?</i></label>
+				<!-- <textarea id="recipe_photo" name="recipe_photo" class="materialize-textarea validate"></textarea> -->
+                <span><i>Upload a photo for your recipe<i></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <span><input type="file" name="recipe_photo"></span>
+                <!-- <input type="submit"> -->
+				<label for="recipe_photo"><i></i></label>
 			</div>
 		</div>
 
@@ -86,6 +82,39 @@
                 <option id="recipe_date" value="" selected>Today's date</option>
             </select>
 		</div>
+
+
+
+
+        <div class=" col d-none">
+			<select  name="recipe_rate1">
+                <option id="recipe_rate1" type="number" value=0></option>
+            </select>
+		</div>
+
+        <div class=" col d-none">
+			<select  name="recipe_rate2">
+                <option id="recipe_rate2" type="number" value=0></option>
+            </select>
+		</div>
+
+        <div class=" col d-none">
+            <input id="recipe_rate3" name="recipe_rate3" type="number" value=0>
+		</div>
+
+        <div class=" col d-none">
+			<select  name="recipe_rate4">
+                <option id="recipe_rate4" type="number" value=0></option>
+            </select>
+		</div>
+
+        <div class=" col d-none">
+			<select  name="recipe_rate5">
+                <option id="recipe_rate5" type="number" value=0></option>
+            </select>
+		</div>
+
+        
 
 
 			

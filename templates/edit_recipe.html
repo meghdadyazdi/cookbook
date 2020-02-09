@@ -6,7 +6,7 @@
 
 
 <div id="site-content" class="row">
-	<form action="{{ url_for('update_recipe', recipe_id=user_recipe._id) }}" method="POST" class="col s12">
+	<form action="{{ url_for('update_recipe', recipe_id=user_recipe._id) }}" method="POST" class="col s12" enctype="multipart/form-data">
 		<div class="row">
 			<div class="input-field col s10 push-s1 m6 push-m3">
 				<select id="recipe_meal" name="recipe_meal">
@@ -96,17 +96,22 @@
 			</div>
 		</div>
 
-		<div class="row">
+		<!-- <div class="row">
 			<div class="input-field col s10 push-s1 m6 push-m3">
 				<textarea id="recipe_photo" name="recipe_photo" class="materialize-textarea validate">{{user_recipe.recipe_photo}}</textarea>
 				<label for="recipe_photo"><i>Any link of a Photo for this food?</i></label>
 			</div>
-		</div>
+		</div> -->
 
-		<div class="row">
+
+
+        <div class="row">
 			<div class="input-field col s10 push-s1 m6 push-m3">
-				<textarea id="recipe_video" name="recipe_video" class="materialize-textarea validate">{{user_recipe.recipe_video}}</textarea>
-				<label for="recipe_video"><i>Any link of a Video for this food?</i></label>
+				<!-- <textarea id="recipe_photo" name="recipe_photo" class="materialize-textarea validate"></textarea> -->
+                <span><i>Upload a photo for your recipe<i></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <input type="file" name="recipe_photo" value="https://cookbook-meghdad.herokuapp.com/photo/{{user_recipe.recipe_photo}}">
+                <!-- <input type="submit"> -->
+				<label for="recipe_photo"><i></i></label>
 			</div>
 		</div>
 
@@ -131,6 +136,36 @@
 		<div class=" col d-none">
 			<select  name="recipe_date">
                 <option id="recipe_date" value="" selected>Today's date</option>
+            </select>
+		</div>
+
+        <div class=" col d-none">
+			<select  name="recipe_rate1">
+                <option id="recipe_rate1" type="number" value={{user_recipe.recipe_rate1}}></option>
+            </select>
+		</div>
+
+        <div class=" col d-none">
+			<select  name="recipe_rate2">
+                <option id="recipe_rate2" type="number" value={{user_recipe.recipe_rate2}}></option>
+            </select>
+		</div>
+
+        <div class=" col d-none">
+			<select  name="recipe_rate3">
+                <option id="recipe_rate3" type="number" value={{user_recipe.recipe_rate3}}></option>
+            </select>
+		</div>
+
+        <div class=" col d-none">
+			<select  name="recipe_rate4">
+                <option id="recipe_rate4" type="number" value={{user_recipe.recipe_rate4}}></option>
+            </select>
+		</div>
+
+        <div class=" col d-none">
+			<select  name="recipe_rate5">
+                <option id="recipe_rate5" type="number" value={{user_recipe.recipe_rate5}}></option>
             </select>
 		</div>
 

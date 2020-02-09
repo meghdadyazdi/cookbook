@@ -135,6 +135,64 @@ nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
     padding: 0 25px;
 } 
 
+/* __________rate______________________________________- */
+
+.fa-star{
+    
+}
+/* .star-1{
+    color: #a9a9a9 !important;
+} */
+
+.star-1,
+.star-2,
+.star-3,
+.star-4,
+.star-5{
+    font-size: 50px;
+    /* color: #a9a9a9 !important; */
+}
+
+.rate1{
+    color: #ff3722 !important;
+}
+
+.rate2{
+    color: #ff8622 !important;
+}
+
+.rate3{
+    color: #ffce00 !important;
+}
+
+.rate4{
+    color: #73cf11 !important;
+}
+
+.rate5{
+    color: #00b67a !important;
+}
+
+
+.rate11{
+    color: #ff3722 !important;
+}
+
+.rate22{
+    color: #ff8622 !important;
+}
+
+.rate33{
+    color: #ffce00 !important;
+}
+
+.rate44{
+    color: #73cf11 !important;
+}
+
+.rate55{
+    color: #00b67a !important;
+}
 
 
 

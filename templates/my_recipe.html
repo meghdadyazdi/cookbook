@@ -14,7 +14,7 @@
 	{% for recipe in my_recipes %}
 	
 		<div class="col s12 m6 xl4 card-recipe p0 boxxx">
-			<img src="{{recipe.recipe_photo}}" alt="{{recipe.recipe_name}}" style="">
+			<img src="{{url_for('photo', photoname=recipe.recipe_photo)}}" alt="{{recipe.recipe_name}}" style="">
 			<div class="card-container capital">
 				<h6 class="no-flow"><b>{{recipe.recipe_name}}</b></h6>
 				<p class="no-flow"><strong> Energy:</strong><i> {{recipe.recipe_energy}} </i></p>
