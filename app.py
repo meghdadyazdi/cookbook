@@ -40,6 +40,8 @@ def sign_up():
         users = mongo.db.users
         existing_user = users.find_one(
             {'username': request.form.get('username')})
+        if request.form.get('pass') != request.form.get('pass2'):
+            return render_template('sign_up.html', invalid_pass=True)        
 
         if existing_user is None:
             users.insert({'username': request.form.get(

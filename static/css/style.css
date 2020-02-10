@@ -9,6 +9,9 @@ nav,
     background-color: #0eb382;
     /* background-color: #00af7b */
 }
+#copy-right{
+    text-align: center;
+}
 
 /* .container row{
     margin-bottom: 20px;
@@ -483,6 +486,15 @@ footer a{
 
 
 /* __________drop down_______________________________ */
+#dropdown1{
+    border-radius: 10px;
+    background-color:  #0eb382;
+}
+
+.dropdown-content li>a{
+    color:#fff
+}
+
 .navDefault{
     position: fixed;
     top: 0;
