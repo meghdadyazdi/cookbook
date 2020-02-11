@@ -158,21 +158,33 @@ def one_my_recipe(recipe_id):
 
 
 
+
 @app.route('/one_recipe/<recipe_id>', methods=['POST', 'GET'])
 def one_recipe(recipe_id):
+   return render_template('one_recipe.html', recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}))
+
+# @app.route('/rate_one_recipe/<recipe_id>')
+# def rate_one_recipe(recipe_id):
+#    return render_template('rate_one_recipe.html', recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}))
+
+@app.route('/rate_recipe/<recipe_id>', methods=['POST', 'GET'])
+def rate_recipe(recipe_id):
+    users = mongo.db.users
     # recipes = mongo.db.recipes
-    # recipes.update_one( {'_id': ObjectId(recipe_id)}, {"$set":
-    #                                                         {
-    #                                                             'recipe_rate1':request.form.get('recipe_rate11')
-    #                                                         }})    
-    return render_template('one_recipe.html', recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}))
+    if request.form.get('recipe_rate11'):
+        users.update({'username': session['username']}, {'$set': {'liked_recipes': ObjectId(recipe_id)}})
+    
+    K = users.find_one({"username": session['username']})
+    for each in K:
+        print(each)
+    print(request.form.get('recipe_rate11'))
+    print(request.form.get('recipe_date'))
+    return redirect(url_for('one_recipe', recipe_id=recipe_id))
 
 
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
-    return render_template('edit_recipe.html', user_recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}),
-                                          recipes=mongo.db.recipes.find())
-
+    return render_template('edit_recipe.html', user_recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}))
 
 @app.route('/update_recipe/<recipe_id>', methods=['POST'])
 def update_recipe(recipe_id):
@@ -205,7 +217,7 @@ def update_recipe(recipe_id):
         'recipe_username':request.form.get('recipe_username'),
         'recipe_date':request.form.get('recipe_date')
         })
-    return redirect(url_for('my_recipe'), )
+    return redirect(url_for('my_recipe'))
 
 
 

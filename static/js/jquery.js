@@ -141,17 +141,20 @@ $(document).ready(function () {
 
     $(".star-1").click(function () {
         $(this).addClass("rate11");
-        var str = $("#recipe_rate11").val();
-        console.log(str);
-        var rate1 = parseInt("str");
-        console.log(rate1);
-        rate1 += 1;
-        console.log(rate1);
-        rate1.toString();
-        console.log(rate1);
-        $("#recipe_rate1").val(rate1)
-    });
+        $("#recipe_rate11").val(1)
 
+
+
+        // var str = $("#recipe_rate11").val(1);
+        // console.log(str);
+        // var rate1 = parseInt("str");
+        // console.log(rate1);
+        // rate1 += 1;
+        // console.log(rate1);
+        // rate1.toString();
+        // console.log(rate1);
+        // $("#recipe_rate1").val(rate1)
+    });
 
 
 
