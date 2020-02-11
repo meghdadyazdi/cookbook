@@ -141,7 +141,60 @@ $(document).ready(function () {
 
     $(".star-1").click(function () {
         $(this).addClass("rate11");
-        $("#recipe_rate11").val(1)
+        $("#recipe_rate11").val("1")
+        $("#recipe_rate22").val("")
+        $("#recipe_rate33").val("")
+        $("#recipe_rate44").val("")
+        $("#recipe_rate55").val("")
+    });
+
+    $(".star-2").click(function () {
+        $(".star-1").addClass("rate22");
+        $(this).addClass("rate22");
+        $("#recipe_rate11").val("")
+        $("#recipe_rate22").val("2")
+        $("#recipe_rate33").val("")
+        $("#recipe_rate44").val("")
+        $("#recipe_rate55").val("")
+    });
+
+    $(".star-3").click(function () {
+        $(".star-1").addClass("rate33");
+        $(".star-2").addClass("rate33");
+        $(this).addClass("rate33");
+        $("#recipe_rate11").val("")
+        $("#recipe_rate22").val("")
+        $("#recipe_rate33").val("3")
+        $("#recipe_rate44").val("")
+        $("#recipe_rate55").val("")
+    });
+
+    $(".star-4").click(function () {
+        $(".star-1").addClass("rate44");
+        $(".star-2").addClass("rate44");
+        $(".star-3").addClass("rate44");
+        $(this).addClass("rate44");
+        $("#recipe_rate11").val("")
+        $("#recipe_rate22").val("")
+        $("#recipe_rate33").val("")
+        $("#recipe_rate44").val("4")
+        $("#recipe_rate55").val("")
+    });
+
+    $(".star-5").click(function () {
+        $(".star-1").addClass("rate55");
+        $(".star-2").addClass("rate55");
+        $(".star-3").addClass("rate55");
+        $(".star-4").addClass("rate55");
+        $(this).addClass("rate55");
+        $("#recipe_rate11").val("")
+        $("#recipe_rate22").val("")
+        $("#recipe_rate33").val("")
+        $("#recipe_rate44").val("")
+        $("#recipe_rate55").val("5")
+    });
+
+    
 
 
 
@@ -154,7 +207,7 @@ $(document).ready(function () {
         // rate1.toString();
         // console.log(rate1);
         // $("#recipe_rate1").val(rate1)
-    });
+    
 
 
 

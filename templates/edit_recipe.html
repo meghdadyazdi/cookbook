@@ -70,17 +70,17 @@
 		<div class="row">
 			<div class="input-field col s10 push-s1 m6 push-m3">
 				<select id="recipe_energy" name="recipe_energy">
-                    {% if user_recipe.recipe_energy == 'low calories' %}
+                    {% if user_recipe.recipe_energy == 'Low calories' %}
                     <option value="" disabled>How much Energy does this food have?</option>
                     <option value="Low calories" selected>Low calories</option>
                     <option value="Medium calories">Medium calories</option>
                     <option value="High calories">High calories</option>
-                    {% elif user_recipe.recipe_energy == 'medium calories'%}
+                    {% elif user_recipe.recipe_energy == 'Medium calories'%}
                     <option value="" disabled>How much Energy does this food have?</option>
                     <option value="Low calories" >Low calories</option>
                     <option value="Medium calories" selected>Medium calories</option>
                     <option value="High calories" >High calories</option>
-                    {% elif user_recipe.recipe_energy == 'high calories'%}
+                    {% elif user_recipe.recipe_energy == 'High calories'%}
                     <option value="" disabled>How much Energy does this food have?</option>
                     <option value="Low calories" >Low calories</option>
                     <option value="Medium calories" >Medium  calories</option>
