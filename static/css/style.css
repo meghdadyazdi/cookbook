@@ -140,9 +140,6 @@ nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
 
 /* __________rate______________________________________- */
 
-.fa-star{
-    
-}
 /* .star-1{
     color: #a9a9a9 !important;
 } */
@@ -154,6 +151,65 @@ nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
 .star-5{
     font-size: 50px;
     /* color: #a9a9a9 !important; */
+}
+.star1,
+.star2,
+.star3,
+.star4,
+.star5{
+    font-size: 30px;
+    /* color: #a9a9a9 !important; */
+}
+
+.excellent{
+    /* background: linear-gradient(90deg, #00b67a 50%, #fef0e6 50%); */
+    height: 11px;
+    margin-top: 6.5px;
+    border-radius: 10px;
+}
+
+.very-good{
+    background: linear-gradient(90deg, #73cf11 50%, #fef0e6 50%);
+    height: 11px;
+    margin-top: 6.5px; 
+}
+
+.good{
+    background: linear-gradient(90deg, #ffce00 50%, #fef0e6 50%);
+    height: 11px;
+    margin-top: 6.5px; 
+}
+
+.average{
+    background: linear-gradient(90deg, #ff8622 50%, #fef0e6 50%);
+    height: 11px;
+    margin-top: 6.5px; 
+}
+
+.bad{
+    background: linear-gradient(90deg, #ff3722 50%, #fef0e6 50%);
+    height: 11px;
+    margin-top: 6.5px; 
+}
+
+.excellent-w{
+    width: 20px;
+}
+
+.very-good-w{
+   width: 20px;
+}
+
+.good-w{
+    width: 20px; 
+}
+
+.average-w{
+    width: 20px;
+}
+
+.bad-w{
+    width: 20px;
 }
 
 .rate1{

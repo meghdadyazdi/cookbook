@@ -12,8 +12,6 @@
 					<i class="material-icons">close</i>
 				</div>
 			</div>
-			<!-- <input id="search_recipe" name="search_recipe" class="validate" type="search" placeholder="       Find your recipe ..." required>
-			<label class="label-icon" for="search"><i class="material-icons">search</i></label> -->
 			<div class="row">
 				<div class="input-field col s4 push-s4 m4 push-m5">
 					<button type="submit" class="btn btn-primary btn-block">Search</button>
@@ -22,9 +20,6 @@
 		</div>
 	</div>
 </form>
-
-
-
 <section class="container">
 	<div class="row main-row">
 	{% for recipe in recipes %}
@@ -32,10 +27,68 @@
 		<div class="col s12 m6 xl4 card-recipe p0 boxxx">
 			<img src="{{url_for('photo', photoname=recipe.recipe_photo)}}" alt="{{recipe.recipe_name}}" style="">
 			<div class="card-container">
-				<h6 class="no-flow capital"><b>{{recipe.recipe_name}}</b></h6>
-				<p class="no-flow "><strong> Energy:</strong><i class="capital"> {{recipe.recipe_energy}} </i></p>
-				<p class="no-flow">{{recipe.recipe_meal}}</p>
-				
+				<h6 class="no-flow capital  m0 p0"><b>{{recipe.recipe_name}}</b></h6>
+
+                <!-- defining rate of a recipe --> 
+                {%set num_raters = recipe.recipe_rate1+recipe.recipe_rate2+recipe.recipe_rate3+recipe.recipe_rate4+recipe.recipe_rate5 %}
+                {%set score = recipe.recipe_rate1+2*recipe.recipe_rate2+3*recipe.recipe_rate3+4*recipe.recipe_rate4+5*recipe.recipe_rate5 %}
+                {%set rate = score // num_raters %}   
+                
+                             
+                <div class="row m0 p0">
+					<div class="col">
+                    {% if num_raters == 0%}
+                        <span><i class="fas fa-star star1 p0"></i></span>
+                        <span><i class="fas fa-star star2 p0"></i></span>
+                        <span><i class="fas fa-star star3 p0"></i></span>
+                        <span><i class="fas fa-star star4 p0"></i></span>
+                        <span><i class="fas fa-star star5 p0"></i></span>
+                        <div><i>This recipe is not rated yet. Be the first one to rate it!</i></div>
+                    {%else%}
+                    {% if rate == 1%}
+                    
+                        <span><i class="fas fa-star star1 rate11 p0"></i></span>
+						<span><i class="fas fa-star star2 p0"></i></span>
+						<span><i class="fas fa-star star3 p0"></i></span>
+						<span><i class="fas fa-star star4 p0"></i></span>
+						<span><i class="fas fa-star star5 p0"></i></span>
+                    {% elif rate == 2%}
+                        <span><i class="fas fa-star star1 rate22 p0"></i></span>
+						<span><i class="fas fa-star star2 rate22 p0"></i></span>
+						<span><i class="fas fa-star star3 p0"></i></span>
+						<span><i class="fas fa-star star4 p0"></i></span>
+						<span><i class="fas fa-star star5 p0"></i></span>
+                    {% elif rate == 3%}
+                        <span><i class="fas fa-star star1 rate33 p0"></i></span>
+						<span><i class="fas fa-star star2 rate33 p0"></i></span>
+						<span><i class="fas fa-star star3 rate33 p0"></i></span>
+						<span><i class="fas fa-star star4 p0"></i></span>
+						<span><i class="fas fa-star star5 p0"></i></span>
+                    {% elif rate == 4%}
+                        <span><i class="fas fa-star star1 rate44 p0"></i></span>
+						<span><i class="fas fa-star star2 rate44 p0"></i></span>
+						<span><i class="fas fa-star star3 rate44 p0"></i></span>
+						<span><i class="fas fa-star star4 rate44 p0"></i></span>
+						<span><i class="fas fa-star star5 p0"></i></span>
+                    {% elif rate == 5%}
+                        <span><i class="fas fa-star star1 rate55 p0"></i></span>
+						<span><i class="fas fa-star star2 rate55 p0"></i></span>
+						<span><i class="fas fa-star star3 rate55 p0"></i></span>
+						<span><i class="fas fa-star star4 rate55 p0"></i></span>
+						<span><i class="fas fa-star star5 rate55 p0"></i></span>
+                    {% else%}
+                        <span><i class="fas fa-star star1 p0"></i></span>
+						<span><i class="fas fa-star star2 p0"></i></span>
+						<span><i class="fas fa-star star3 p0"></i></span>
+						<span><i class="fas fa-star star4 p0"></i></span>
+						<span><i class="fas fa-star star5 p0"></i></span>
+                    
+                    {% endif %}
+                    {% endif%}
+					</div>
+				</div>
+				<p class="no-flow"><strong> Energy:</strong><i class="capital"> {{recipe.recipe_energy}} </i></p>
+				<p class="no-flow">{{recipe.recipe_meal}}</p>				
 					<p class="no-flow">
 						<strong>Ingredients:</strong> {{recipe.recipe_ingredients}}
 					</p>
@@ -48,7 +101,6 @@
 		{% endfor %}
 	</div>
 </section>
-
 {%endblock%}
 
 

@@ -8,20 +8,25 @@ from datetime import date
 from bson import Binary, Code, json_util
 from bson.json_util import dumps, loads
 import json
+from os import path
+if path.exists("env.py"):
+  import env 
 
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'task_manager'
-app.config["MONGO_URI"] = "mongodb+srv://root:r00tUser@myfirstcluster-kuifg.mongodb.net/cookbook?retryWrites=true&w=majority"
+app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 mongo = PyMongo(app)
 
-app.secret_key = "randomstring123"
+app.secret_key = os.environ.get('SECRET_KEY')
 
 
 
 def rating(rate1, rate2, rate3, rate4, rate5):
     score = rate1+2*rate2+3*rate3+4*rate4+5*rate5
     num_raters = rate1+rate2+rate3+rate4+rate5
+    if num_raters == 0:
+        return 0
     return score // num_raters
 
 
@@ -172,16 +177,6 @@ def my_recipe():
 @app.route('/one_my_recipe/<recipe_id>')
 def one_my_recipe(recipe_id):
     recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-
-
-    # score = recipe.rate1+2*recipe.rate2+3*recipe.rate3+4*recipe.rate4+5*recipe.rate5
-    # num_raters = recipe.rate1+recipe.rate2+recipe.rate3+recipe.rate4+recipe.rate5
-    # min_rate = score % num_raters
-    # if min_rate > (num_raters % 2):
-    #     min_rate +=1
-
-# , min_rate=min_rate
-
     return render_template('one_my_recipe.html', recipe=recipe)
 
 
@@ -190,16 +185,7 @@ def one_my_recipe(recipe_id):
 def one_recipe(recipe_id):
     recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     user_in=mongo.db.users.find_one({"username": session['username']})
-
-    if str(recipe["_id"]) in user_in['rated_recipes']:
-        print("yyyyyyyyyyyyyyyyyessssssssssssssssssssssssssssssssssssss")
-    # print(user_in['username'])
-    # id=str(recipe["_id"])
-    # print(type(id))
-    # print(type(user_in['rated_recipes'][0]))
-    rate=rating(recipe['recipe_rate1'], recipe['recipe_rate2'], recipe['recipe_rate3'], recipe['recipe_rate4'], recipe['recipe_rate5'])
-    
-    
+    rate=rating(recipe['recipe_rate1'], recipe['recipe_rate2'], recipe['recipe_rate3'], recipe['recipe_rate4'], recipe['recipe_rate5'])    
     return render_template('one_recipe.html', recipe=recipe, user_in=user_in, rate=rate, id=str(recipe["_id"]))
 
 
