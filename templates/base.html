@@ -19,8 +19,7 @@
 		<div class="nav-wrapper">
 			<a href="{{url_for('find_recipe')}}" data-target="mobile-demo"
 				class="sidenav-trigger"><i class="material-icons">menu</i></a>
-			<a href="{{url_for('find_recipe')}}"
-				class="brand-logo">CooKBooK<span><i class="fas fa-utensils"></i></span></a>
+			<a href="{{url_for('find_recipe')}}" class="brand-logo">CooKBooK<i class="fas fa-utensils"></i></span></a>
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
 				<li><a href="{{url_for('find_recipe')}}">Home</a></li>
 				{% if active_user%}
@@ -35,57 +34,45 @@
 						data-target="dropdown1"><b>{{active_user}}</b><span><i class="far fa-user"></i></span><i class="material-icons right">arrow_drop_down</i></a>
 				</li>
 				{% else %}
-
-                
-                <li id="signinDrop"><a  href="#!">Log in <span><i class="far fa-user"></i></span></a>
-                
+				<li id="signinDrop"><a href="#!">Log in <span><i class="far fa-user"></i></span></a>
 				</li>
-
-
-
-        
-                <div id="signinBox" class="row">
-								<form action="{{ url_for('sign_in') }}" method=POST class="col s12">
-									<div class="row">
-										<div class="input-field col ">
-											<i class="material-icons prefix">account_circle</i>
-											<!-- <label for="exampleInputEmail1" >Username</label> -->
-											<input type="text" class="form-control" name="username" placeholder="Username" required>
+				<div id="signinBox" class="row">
+					<form action="{{ url_for('sign_in') }}" method=POST class="col s12">
+						<div class="row">
+							<div class="input-field col ">
+								<i class="material-icons prefix">account_circle</i>
+								<input type="text" class="form-control" name="username" placeholder="Username" required>
 		                                </div>
-										</div>
-										<div class="row">
-											<div class="input-field col ">
-												<i class="material-icons prefix">vpn_key</i>
-												<!-- <label for="exampleInputPassword1">Password</label> -->
-												<input type="password" class="form-control" name="pass" placeholder="Password" required>
-		                                	</div>
-											</div>
-											{% if invalid_username %}
-											<div class="row">
-												<div class="input-field col ">
-													<p class="">This username already exists!</p>
-												</div>
-											</div>
-											{% endif %}
-											<div class="row">
-												<div class="input-field col ">
-													<button type="submit" class="btn btn-primary btn-block">Log in</button>
-												</div>
-											</div>
-                                            <!-- <div class="row">
-												<div class="col "> --><a href="{{url_for('sign_up')}}">Sign up<span><i class="fas fa-user-plus"></i></span></a>
-													<p>Or</p><!-- </div>
-											</div> -->
-								</form>
 							</div>
-                
-          
+							<div class="row">
+								<div class="input-field col ">
+									<i class="material-icons prefix">vpn_key</i>
+									<input type="password" class="form-control" name="pass" placeholder="Password" required>
+		                                	</div>
+								</div>
+								{% if invalid_username %}
+								<div class="row">
+									<div class="input-field col ">
+										<p class="">This username already exists!</p>
+									</div>
+								</div>
+								{% endif %}
+								<div class="row">
+									<div class="input-field col ">
+										<button type="submit" class="btn btn-primary btn-block">Log in</button>
+									</div>
+								</div>
+								<a href="{{url_for('sign_up')}}">Sign
+									up<span><i class="fas fa-user-plus"></i></span></a>
+					</form>
+				</div>
 				{% endif %}
 			</ul>
 			<ul class="sidenav" id="mobile-demo">
 				{% if active_user%}
 				<li><a href="{{url_for('add_recipe')}}"><i class="material-icons left">add</i>Add recipe</a></li>
-				<li><a class="" href="#!" data-target=""><b>{{active_user}}<span><i class="far fa-user"></i></span></b></a>
+				<li><a class="" href="#!"
+						data-target=""><b>{{active_user}}<span><i class="far fa-user"></i></span></b></a>
 				</li>
 				<li>
 					<ul class="side_inn_list">
@@ -109,9 +96,9 @@
 
 
 	<footer class="page-footer">
-			<div class="row">
-				<div class="col l6 s12">
-					<h5 class="white-text">CooKBooK<span><i class="fas fa-utensils"></i></h5>
+		<div class="row">
+			<div class="col l6 s12">
+				<h5 class="white-text">CooKBooK<span><i class="fas fa-utensils"></i></h5>
 					<p class="grey-text text-lighten-4"></p>
 				</div>
 				<div class="col l4 offset-l2 s12">

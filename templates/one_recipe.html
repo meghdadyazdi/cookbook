@@ -14,14 +14,14 @@
 				<p><i>{{recipe.recipe_date[4:7]+"-"+recipe.recipe_date[8:10]+"-"+recipe.recipe_date[11:15]+" ("+recipe.recipe_date[16:21]+")"}}</i>
 				</p>
 
-                <!-- define percentage of each rating -->
-                {% set score = recipe.recipe_rate1+recipe.recipe_rate2+recipe.recipe_rate3+recipe.recipe_rate4+recipe.recipe_rate5 %}
-                {% set excellent= ((recipe.recipe_rate5/score)*100)|int%}
-                {% set verygood= ((recipe.recipe_rate4/score)*100)|int%}
-                {% set good= ((recipe.recipe_rate3/score)*100)|int%}
-                {% set average= ((recipe.recipe_rate2/score)*100)|int%}
-                {% set bad= ((recipe.recipe_rate1/score)*100)|int%}
-                
+				<!-- define percentage of each rating -->
+				{% set score = recipe.recipe_rate1+recipe.recipe_rate2+recipe.recipe_rate3+recipe.recipe_rate4+recipe.recipe_rate5 %}
+				{% set excellent= ((recipe.recipe_rate5/score)*100)|int%}
+				{% set verygood= ((recipe.recipe_rate4/score)*100)|int%}
+				{% set good= ((recipe.recipe_rate3/score)*100)|int%}
+				{% set average= ((recipe.recipe_rate2/score)*100)|int%}
+				{% set bad= ((recipe.recipe_rate1/score)*100)|int%}
+
 				<div class="row">
 					<div class="col">
 						{%set num_raters = recipe.recipe_rate1+recipe.recipe_rate2+recipe.recipe_rate3+recipe.recipe_rate4+recipe.recipe_rate5 %}
@@ -74,53 +74,62 @@
 						{% endif%}
 					</div>
 				</div>
+
+				<div class="row p0 m0">
+
+					<div class="row">
+						<div class="col s12 m6">
+							<div class="col s3 m4 p0"><i>Excellent</i></div>
+							<div class="col s2 m2 p0"><i><b>{{excellent}}%</b></i></div>
+							<div class="col s4 m6 excellent"
+								style="background: linear-gradient(90deg, #00b67a {{excellent}}%, #fef0e6 {{excellent}}%);">
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col s12 m6">
+							<div class="col s3 m4 p0"><i>Very good</i></div>
+							<div class="col s2 m2 p0"><i><b>{{verygood}}%</b></i></div>
+							<div class="col s4 m6 excellent"
+								style="background: linear-gradient(90deg, #73cf11 {{verygood}}%, #fef0e6 {{verygood}}%);">
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col s12 m6">
+							<div class="col s3 m4 p0"><i>Good</i></div>
+							<div class="col s2 m2 p0"><i><b>{{good}}%</b></i></div>
+							<div class="col s4 m6 excellent"
+								style="background: linear-gradient(90deg, #ffce00 {{good}}%, #fef0e6 {{good}}%);"></div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col s12 m6">
+							<div class="col s3 m4 p0"><i>Average</i></div>
+							<div class="col s2 m2 p0"><i><b>{{average}}%</b></i></div>
+							<div class="col s4 m6 excellent"
+								style="background: linear-gradient(90deg, #ff8622 {{average}}%, #fef0e6 {{average}}%);">
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col s12 m6">
+							<div class="col s3 m4 p0"><i>Bad</i></div>
+							<div class="col s2 m2 p0"><i><b>{{bad}}%</b></i></div>
+							<div class="col s4 m6 excellent"
+								style="background: linear-gradient(90deg, #ff3722 {{bad}}%, #fef0e6 {{bad}}%);"></div>
+						</div>
+					</div>
+
+				</div>
 				{% if id in user_in.rated_recipes %}
-                <div class="row p0 m0">
-
-                   <div class="row">
-                      <div class="col s12 m6">
-                          <div class="col s3 m4 p0"><i>Excellent</i></div>
-                          <div class="col s2 m2 p0"><i><b>{{excellent}}%</b></i></div>
-                          <div class="col s4 m6 excellent" style="background: linear-gradient(90deg, #00b67a {{excellent}}%, #fef0e6 {{excellent}}%);"></div>
-                      </div>
-                   </div>
-
-                   <div class="row">
-                      <div class="col s12 m6">
-                          <div class="col s3 m4 p0"><i>Very good</i></div>
-                          <div class="col s2 m2 p0"><i><b>{{verygood}}%</b></i></div>
-                          <div class="col s4 m6 excellent" style="background: linear-gradient(90deg, #73cf11 {{verygood}}%, #fef0e6 {{verygood}}%);"></div>
-                      </div>
-                   </div>
-
-                   <div class="row">
-                      <div class="col s12 m6">
-                          <div class="col s3 m4 p0"><i>Good</i></div>
-                          <div class="col s2 m2 p0"><i><b>{{good}}%</b></i></div>
-                          <div class="col s4 m6 excellent" style="background: linear-gradient(90deg, #ffce00 {{good}}%, #fef0e6 {{good}}%);"></div>
-                      </div>
-                   </div>
-
-                   <div class="row">
-                      <div class="col s12 m6">
-                          <div class="col s3 m4 p0"><i>Average</i></div>
-                          <div class="col s2 m2 p0"><i><b>{{average}}%</b></i></div>
-                          <div class="col s4 m6 excellent" style="background: linear-gradient(90deg, #ff8622 {{average}}%, #fef0e6 {{average}}%);"></div>
-                      </div>
-                   </div>
-
-                   <div class="row">
-                      <div class="col s12 m6">
-                          <div class="col s3 m4 p0"><i>Bad</i></div>
-                          <div class="col s2 m2 p0"><i><b>{{bad}}%</b></i></div>
-                          <div class="col s4 m6 excellent" style="background: linear-gradient(90deg, #ff3722 {{bad}}%, #fef0e6 {{bad}}%);"></div>
-                      </div>
-                   </div>
-
-                </div>
-                <div><i><b>You have rated this recipe so you can not submit your rate once more!</b><i></div>
+				<div><i>You have rated this recipe so you can not submit your rate once more!<i></div>
                 {% elif not active_user %}
-                <div><i>To submit youe rate for this recipe you should first sign in or sign up!<i></div>
+                <div><i>To submit your rate for this recipe you should first sign in or sign up!<i></div>
                                
                 {% else %}
                 <form action="{{ url_for('rate_recipe', recipe_id=recipe._id) }}" method="POST" class="col s12">
