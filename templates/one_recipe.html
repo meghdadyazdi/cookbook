@@ -20,48 +20,52 @@
 
 
 
-                {% for each in user_in.rated_recipes %}
-                {% if each == recipe._id%}
-                {% set a=1%}
-                {{each}}
-                {% endif %}
-                {% endfor %}
+                
+                <!-- {% set rated=[]%} -->
+
+                {%set score = recipe.recipe_rate1+2*recipe.recipe_rate2+3*recipe.recipe_rate3+4*recipe.recipe_rate4+5*recipe.recipe_rate5 %}
+                {%set num_raters = recipe.recipe_rate1+recipe.recipe_rate2+recipe.recipe_rate3+recipe.recipe_rate4+recipe.recipe_rate5 %}
+                
+            
+                
+                
                 
 				<div class="row">
 					<div class="col">
-                    {% if (recipe.recipe_rate1+recipe.recipe_rate2+recipe.recipe_rate3+recipe.recipe_rate4+recipe.recipe_rate5) == 0%}
+                    {% if num_raters == 0%}
                         <span><i class="fas fa-star star-1"></i></span>
 						<span><i class="fas fa-star star-2"></i></span>
 						<span><i class="fas fa-star star-3"></i></span>
 						<span><i class="fas fa-star star-4"></i></span>
 						<span><i class="fas fa-star star-5"></i></span>
-                        not rated
+                        <span>This recipe is not rated yet. Be the first one to rate it!</span>  {{score}} {{num_raters}} {{min_rate}}
+                    {%else%}
+                    {% if rate == 1%}
                     
-                    {% elif (recipe.recipe_rate1+2*recipe.recipe_rate2+3*recipe.recipe_rate3+4*recipe.recipe_rate4+5*recipe.recipe_rate5)//(recipe.recipe_rate1+recipe.recipe_rate2+recipe.recipe_rate3+recipe.recipe_rate4+recipe.recipe_rate5) == 1%}
                         <span><i class="fas fa-star star-1 rate11"></i></span>
 						<span><i class="fas fa-star star-2"></i></span>
 						<span><i class="fas fa-star star-3"></i></span>
 						<span><i class="fas fa-star star-4"></i></span>
 						<span><i class="fas fa-star star-5"></i></span>
-                    {% elif (recipe.recipe_rate1+2*recipe.recipe_rate2+3*recipe.recipe_rate3+4*recipe.recipe_rate4+5*recipe.recipe_rate5)//(recipe.recipe_rate1+recipe.recipe_rate2+recipe.recipe_rate3+recipe.recipe_rate4+recipe.recipe_rate5) == 2%}
+                    {% elif rate == 2%}
                         <span><i class="fas fa-star star-1 rate22"></i></span>
 						<span><i class="fas fa-star star-2 rate22"></i></span>
 						<span><i class="fas fa-star star-3"></i></span>
 						<span><i class="fas fa-star star-4"></i></span>
 						<span><i class="fas fa-star star-5"></i></span>
-                    {% elif (recipe.recipe_rate1+2*recipe.recipe_rate2+3*recipe.recipe_rate3+4*recipe.recipe_rate4+5*recipe.recipe_rate5)//(recipe.recipe_rate1+recipe.recipe_rate2+recipe.recipe_rate3+recipe.recipe_rate4+recipe.recipe_rate5) == 3%}
+                    {% elif rate == 3%}
                         <span><i class="fas fa-star star-1 rate33"></i></span>
 						<span><i class="fas fa-star star-2 rate33"></i></span>
 						<span><i class="fas fa-star star-3 rate33"></i></span>
 						<span><i class="fas fa-star star-4"></i></span>
 						<span><i class="fas fa-star star-5"></i></span>
-                    {% elif (recipe.recipe_rate1+2*recipe.recipe_rate2+3*recipe.recipe_rate3+4*recipe.recipe_rate4+5*recipe.recipe_rate5)//(recipe.recipe_rate1+recipe.recipe_rate2+recipe.recipe_rate3+recipe.recipe_rate4+recipe.recipe_rate5) == 4%}
+                    {% elif rate == 4%}
                         <span><i class="fas fa-star star-1 rate44"></i></span>
 						<span><i class="fas fa-star star-2 rate44"></i></span>
 						<span><i class="fas fa-star star-3 rate44"></i></span>
 						<span><i class="fas fa-star star-4 rate44"></i></span>
 						<span><i class="fas fa-star star-5"></i></span>
-                    {% elif (recipe.recipe_rate1+2*recipe.recipe_rate2+3*recipe.recipe_rate3+4*recipe.recipe_rate4+5*recipe.recipe_rate5)//(recipe.recipe_rate1+recipe.recipe_rate2+recipe.recipe_rate3+recipe.recipe_rate4+recipe.recipe_rate5) == 5%}
+                    {% elif rate == 5%}
                         <span><i class="fas fa-star star-1 rate55"></i></span>
 						<span><i class="fas fa-star star-2 rate55"></i></span>
 						<span><i class="fas fa-star star-3 rate55"></i></span>
@@ -75,20 +79,28 @@
 						<span><i class="fas fa-star star-5"></i></span>
                     
                     {% endif %}
+                    {% endif%}
 
 					</div>
 				</div>
 
 
 
-				<form action="{{ url_for('rate_recipe', recipe_id=recipe._id) }}" method="POST" class="col s12">
-					{% if a == 1%}
-						<div class="input-field col s10 m6">
+				{% if id in user_in.rated_recipes %}
+                <div><i>You have rated this recipe once before so you can not submit your rate one more!<i></div>
+                
+                {% else %}
+                <form action="{{ url_for('rate_recipe', recipe_id=recipe._id) }}" method="POST" class="col s12">
+					
+						
+                    
+                    
+                    <div class="input-field col s10 m6">
 							<button class="btn waves-effect waves-light" type="submit">Rate it!</button>
 						</div>
                         
 
-                    {% endif %}
+                   
 
                         <div class=" col d-none">
 							<select  name="recipe_rate11">
@@ -119,17 +131,8 @@
                                <option id="recipe_rate55" value="" selected>Today's date</option>
                             </select>
 						</div>
-
-                        
-
-
-
-
-
-
-
-
 				</form>
+                 {% endif %}
 
 
 

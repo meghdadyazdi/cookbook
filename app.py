@@ -22,10 +22,7 @@ app.secret_key = "randomstring123"
 def rating(rate1, rate2, rate3, rate4, rate5):
     score = rate1+2*rate2+3*rate3+4*rate4+5*rate5
     num_raters = rate1+rate2+rate3+rate4+rate5
-    min_rate = score % num_raters
-    if min_rate > (num_raters%2):
-        return min_rate+1
-    return min_rate
+    return score // num_raters
 
 
 
@@ -60,7 +57,7 @@ def sign_up():
 
         if existing_user is None:
             users.insert({'username': request.form.get(
-                'username'), 'password': request.form.get('pass')})
+                'username'), 'password': request.form.get('pass'), 'rated_recipes':[]})
             session['username'] = request.form['username']
             return redirect(url_for('find_recipe'))
         return render_template('sign_up.html', invalid_username=True)
@@ -192,19 +189,18 @@ def one_my_recipe(recipe_id):
 @app.route('/one_recipe/<recipe_id>', methods=['POST', 'GET'])
 def one_recipe(recipe_id):
     recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    user_in=mongo.db.recipes.find({"recipe_username": session['username']})
+    user_in=mongo.db.users.find_one({"username": session['username']})
+
+    if str(recipe["_id"]) in user_in['rated_recipes']:
+        print("yyyyyyyyyyyyyyyyyessssssssssssssssssssssssssssssssssssss")
+    # print(user_in['username'])
+    # id=str(recipe["_id"])
+    # print(type(id))
+    # print(type(user_in['rated_recipes'][0]))
+    rate=rating(recipe['recipe_rate1'], recipe['recipe_rate2'], recipe['recipe_rate3'], recipe['recipe_rate4'], recipe['recipe_rate5'])
     
-    # # a = json.dumps(recipe)
-
-    # a = json_util.dumps(recipe)
-    # # a = loads(recipe)
-    # for each in a:
-    #     print(each)
-    # print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
-    # print(type(a))
-
-    # # print(a.recipe_name)
-    return render_template('one_recipe.html', recipe=recipe, user_in=user_in)
+    
+    return render_template('one_recipe.html', recipe=recipe, user_in=user_in, rate=rate, id=str(recipe["_id"]))
 
 
 @app.route('/rate_recipe/<recipe_id>', methods=['POST', 'GET'])

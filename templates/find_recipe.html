@@ -31,9 +31,9 @@
 
 		<div class="col s12 m6 xl4 card-recipe p0 boxxx">
 			<img src="{{url_for('photo', photoname=recipe.recipe_photo)}}" alt="{{recipe.recipe_name}}" style="">
-			<div class="card-container capital">
-				<h6 class="no-flow"><b>{{recipe.recipe_name}}</b></h6>
-				<p class="no-flow"><strong> Energy:</strong><i> {{recipe.recipe_energy}} </i></p>
+			<div class="card-container">
+				<h6 class="no-flow capital"><b>{{recipe.recipe_name}}</b></h6>
+				<p class="no-flow "><strong> Energy:</strong><i class="capital"> {{recipe.recipe_energy}} </i></p>
 				<p class="no-flow">{{recipe.recipe_meal}}</p>
 				
 					<p class="no-flow">

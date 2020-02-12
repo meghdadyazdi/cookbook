@@ -7,9 +7,9 @@
 	<div class="row single-row">
 		<div class="col s12 card-recipe p0 m0 single-card-recipe">
 			<img src="{{url_for('photo', photoname=recipe.recipe_photo)}}" alt="{{recipe.recipe_name}}" class="single-img">
-			<div class="card-container capital">
+			<div class="card-container">
 				<h6 class=""><b>{{recipe.recipe_name}}</b></h6>
-				<p class=""><strong> Energy:</strong><i> {{recipe.recipe_energy}} </i></p>
+				<p><strong> Energy:</strong><i class=""> {{recipe.recipe_energy}} </i></p>
 				<p class="">{{recipe.recipe_meal}}</p>				
 					<p class="">
 						<strong>Ingredients:</strong> {{recipe.recipe_ingredients}}
