@@ -140,7 +140,12 @@ $(document).ready(function () {
     // __________mouse click___________
 
     $(".star-1").click(function () {
-        $(this).addClass("rate11");
+        $(this).removeClass("rate11 rate22 rate33 rate44 rate55");
+        $(".star-2").removeClass("rate22 rate33 rate44 rate55");
+        $(".star-3").removeClass("rate33 rate44 rate55");
+        $(".star-4").removeClass("rate44 rate55");
+        $(".star-5").removeClass("rate55");
+         $(this).addClass("rate11");
         $("#recipe_rate11").val("1")
         $("#recipe_rate22").val("")
         $("#recipe_rate33").val("")
@@ -149,6 +154,11 @@ $(document).ready(function () {
     });
 
     $(".star-2").click(function () {
+        $(".star-1").removeClass("rate33 rate44 rate55");        
+        $(this).removeClass("rate22 rate33 rate44 rate55");
+        $(".star-3").removeClass("rate33 rate44 rate55");
+        $(".star-4").removeClass("rate44 rate55");
+        $(".star-5").removeClass("rate55");
         $(".star-1").addClass("rate22");
         $(this).addClass("rate22");
         $("#recipe_rate11").val("")
@@ -159,9 +169,15 @@ $(document).ready(function () {
     });
 
     $(".star-3").click(function () {
+        $(".star-1").removeClass("rate44 rate55");
+        $(".star-2").removeClass("rate44 rate55");
+        // $(".satr-4").removeClass("rate44");
+        $(this).removeClass("rate33 rate44 rate55");
+        $(".star-4").removeClass("rate44 rate55");
+         $(".star-5").removeClass("rate55");
+        $(this).addClass("rate33");
         $(".star-1").addClass("rate33");
         $(".star-2").addClass("rate33");
-        $(this).addClass("rate33");
         $("#recipe_rate11").val("")
         $("#recipe_rate22").val("")
         $("#recipe_rate33").val("3")
@@ -169,11 +185,16 @@ $(document).ready(function () {
         $("#recipe_rate55").val("")
     });
 
-    $(".star-4").click(function () {
+    $(".star-4").click(function () {        
+        $(".star-1").removeClass("rate55");
+        $(".star-2").removeClass("rate55");
+        $(".star-3").removeClass("rate55");        
+        $(this).removeClass("rate44 rate55");
+        $(".star-5").removeClass("rate55");
+        $(this).addClass("rate44");
         $(".star-1").addClass("rate44");
         $(".star-2").addClass("rate44");
         $(".star-3").addClass("rate44");
-        $(this).addClass("rate44");
         $("#recipe_rate11").val("")
         $("#recipe_rate22").val("")
         $("#recipe_rate33").val("")

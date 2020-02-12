@@ -1,10 +1,14 @@
 import os
-from flask import Flask, render_template, redirect, session, request, url_for
+from flask import Flask, render_template, redirect, session, request, url_for, jsonify
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import bcrypt
 import re
 from datetime import date
+from bson import Binary, Code, json_util
+from bson.json_util import dumps, loads
+import json
+
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'task_manager'
@@ -12,6 +16,17 @@ app.config["MONGO_URI"] = "mongodb+srv://root:r00tUser@myfirstcluster-kuifg.mong
 mongo = PyMongo(app)
 
 app.secret_key = "randomstring123"
+
+
+
+def rating(rate1, rate2, rate3, rate4, rate5):
+    score = rate1+2*rate2+3*rate3+4*rate4+5*rate5
+    num_raters = rate1+rate2+rate3+rate4+rate5
+    min_rate = score % num_raters
+    if min_rate > (num_raters%2):
+        return min_rate+1
+    return min_rate
+
 
 
 @app.route('/')
@@ -76,7 +91,12 @@ def insert_recipe():
         'recipe_photo':recipe_photo.filename,
         'recipe_video':request.form.get('recipe_video'),
         'recipe_username':request.form.get('recipe_username'),
-        'recipe_date':request.form.get('recipe_date')
+        'recipe_date':request.form.get('recipe_date'),
+        'recipe_rate1':0,
+        'recipe_rate2':0,
+        'recipe_rate3':0,
+        'recipe_rate4':0,
+        'recipe_rate5':0        
         })
     else:
         recipes.insert_one(request.form.to_dict())
@@ -154,25 +174,37 @@ def my_recipe():
 
 @app.route('/one_my_recipe/<recipe_id>')
 def one_my_recipe(recipe_id):
-    return render_template('one_my_recipe.html', recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}))
+    recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
 
 
+    # score = recipe.rate1+2*recipe.rate2+3*recipe.rate3+4*recipe.rate4+5*recipe.rate5
+    # num_raters = recipe.rate1+recipe.rate2+recipe.rate3+recipe.rate4+recipe.rate5
+    # min_rate = score % num_raters
+    # if min_rate > (num_raters % 2):
+    #     min_rate +=1
 
+# , min_rate=min_rate
 
-
-def rating(rate1, rate2, rate3, rate4, rate5):
-    score = rate1+2*rate2+3*rate3+4*rate4+5*rate5
-    num_raters = rate1+rate2+rate3+rate4+rate5
-    min_rate = score % num_raters
-    if min_rate > (num_raters%2):
-        return min_rate+1
-    return min_rate
+    return render_template('one_my_recipe.html', recipe=recipe)
 
 
 
 @app.route('/one_recipe/<recipe_id>', methods=['POST', 'GET'])
 def one_recipe(recipe_id):
-   return render_template('one_recipe.html', recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}))
+    recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    user_in=mongo.db.recipes.find({"recipe_username": session['username']})
+    
+    # # a = json.dumps(recipe)
+
+    # a = json_util.dumps(recipe)
+    # # a = loads(recipe)
+    # for each in a:
+    #     print(each)
+    # print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+    # print(type(a))
+
+    # # print(a.recipe_name)
+    return render_template('one_recipe.html', recipe=recipe, user_in=user_in)
 
 
 @app.route('/rate_recipe/<recipe_id>', methods=['POST', 'GET'])
@@ -180,23 +212,21 @@ def rate_recipe(recipe_id):
     users = mongo.db.users
     recipes = mongo.db.recipes
     if request.form.get('recipe_rate11'):
-        users.update({'username': session['username']}, {'$push': {'liked_recipes': recipe_id}})
-        recipes.update({'_id': ObjectId(recipe_id)}, {'$inc': {'rate1': 1}})
+        users.update({'username': session['username']}, {'$push': {'rated_recipes': recipe_id}})
+        recipes.update({'_id': ObjectId(recipe_id)}, {'$inc': {'recipe_rate1': 1}})
     if request.form.get('recipe_rate22'):
-        users.update({'username': session['username']}, {'$push': {'liked_recipes': recipe_id}})
-        recipes.update({'_id': ObjectId(recipe_id)}, {'$inc': {'rate2': 1}})
+        users.update({'username': session['username']}, {'$push': {'rated_recipes': recipe_id}})
+        recipes.update({'_id': ObjectId(recipe_id)}, {'$inc': {'recipe_rate2': 1}})
     if request.form.get('recipe_rate33'):
-        users.update({'username': session['username']}, {'$push': {'liked_recipes': recipe_id}})
-        recipes.update({'_id': ObjectId(recipe_id)}, {'$inc': {'rate3': 1}})
+        users.update({'username': session['username']}, {'$push': {'rated_recipes': recipe_id}})
+        recipes.update({'_id': ObjectId(recipe_id)}, {'$inc': {'recipe_rate3': 1}})
     if request.form.get('recipe_rate44'):
-        users.update({'username': session['username']}, {'$push': {'liked_recipes': recipe_id}})
-        recipes.update({'_id': ObjectId(recipe_id)}, {'$inc': {'rate4': 1}})
+        users.update({'username': session['username']}, {'$push': {'rated_recipes': recipe_id}})
+        recipes.update({'_id': ObjectId(recipe_id)}, {'$inc': {'recipe_rate4': 1}})
     if request.form.get('recipe_rate55'):
-        users.update({'username': session['username']}, {'$push': {'liked_recipes': recipe_id}})
-        recipes.update({'_id': ObjectId(recipe_id)}, {'$inc': {'rate5': 1}})
-    
-    user=users.find_one({"_id": ObjectId(recipe_id)})
-    # for each in users.liked_recipes.0:
+        users.update({'username': session['username']}, {'$push': {'rated_recipes': recipe_id}})
+        recipes.update({'_id': ObjectId(recipe_id)}, {'$inc': {'recipe_rate5': 1}})
+
     return redirect(url_for('one_recipe', recipe_id=recipe_id))
 
 
@@ -220,7 +250,12 @@ def update_recipe(recipe_id):
         'recipe_energy':request.form.get('recipe_energy'),
         'recipe_photo':recipe_photo.filename,        
         'recipe_username':request.form.get('recipe_username'),
-        'recipe_date':request.form.get('recipe_date')
+        'recipe_date':request.form.get('recipe_date'),
+        'recipe_rate1':0,
+        'recipe_rate2':0,
+        'recipe_rate3':0,
+        'recipe_rate4':0,
+        'recipe_rate5':0
         })
     
     else:
@@ -232,7 +267,12 @@ def update_recipe(recipe_id):
         'recipe': request.form.get('recipe'),
         'recipe_energy':request.form.get('recipe_energy'),
         'recipe_username':request.form.get('recipe_username'),
-        'recipe_date':request.form.get('recipe_date')
+        'recipe_date':request.form.get('recipe_date'),
+        'recipe_rate1':0,
+        'recipe_rate2':0,
+        'recipe_rate3':0,
+        'recipe_rate4':0,
+        'recipe_rate5':0
         })
     print(request.form.get('recipe_date'))
     return redirect(url_for('my_recipe'))
