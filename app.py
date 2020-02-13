@@ -26,7 +26,7 @@ def rating(rate1, rate2, rate3, rate4, rate5):
     num_raters = rate1+rate2+rate3+rate4+rate5
     if num_raters == 0:
         return 0
-    return score // num_raters
+    return score / num_raters
 
 
 @app.route('/')

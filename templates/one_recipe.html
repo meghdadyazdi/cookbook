@@ -15,7 +15,6 @@
 				</p>
 
 				
-
 				<div class="row">
 					<div class="col">
 						{%set num_raters = recipe.recipe_rate1+recipe.recipe_rate2+recipe.recipe_rate3+recipe.recipe_rate4+recipe.recipe_rate5 %}
@@ -32,31 +31,31 @@
 		        		{% set good= ((recipe.recipe_rate3/num_raters)*100)|int%}
 			        	{% set average= ((recipe.recipe_rate2/num_raters)*100)|int%}
 			        	{% set bad= ((recipe.recipe_rate1/num_raters)*100)|int%}
-						{% if rate == 1%}
+						{% if (1.6 >= rate)%}
 						<span><i class="fas fa-star star-1 rate11"></i></span>
 						<span><i class="fas fa-star star-2"></i></span>
 						<span><i class="fas fa-star star-3"></i></span>
 						<span><i class="fas fa-star star-4"></i></span>
 						<span><i class="fas fa-star star-5"></i></span>
-						{% elif rate == 2%}
+						{% elif (rate >1.6) and (2.6 >= rate)%}
 						<span><i class="fas fa-star star-1 rate22"></i></span>
 						<span><i class="fas fa-star star-2 rate22"></i></span>
 						<span><i class="fas fa-star star-3"></i></span>
 						<span><i class="fas fa-star star-4"></i></span>
 						<span><i class="fas fa-star star-5"></i></span>
-						{% elif rate == 3%}
+						{% elif (rate >2.6) and (3.6 >= rate)%}
 						<span><i class="fas fa-star star-1 rate33"></i></span>
 						<span><i class="fas fa-star star-2 rate33"></i></span>
 						<span><i class="fas fa-star star-3 rate33"></i></span>
 						<span><i class="fas fa-star star-4"></i></span>
 						<span><i class="fas fa-star star-5"></i></span>
-						{% elif rate == 4%}
+						{% elif (rate >3.6) and (4.6 >= rate)%}
 						<span><i class="fas fa-star star-1 rate44"></i></span>
 						<span><i class="fas fa-star star-2 rate44"></i></span>
 						<span><i class="fas fa-star star-3 rate44"></i></span>
 						<span><i class="fas fa-star star-4 rate44"></i></span>
 						<span><i class="fas fa-star star-5"></i></span>
-						{% elif rate == 5%}
+						{% elif rate > 4.6%}
 						<span><i class="fas fa-star star-1 rate55"></i></span>
 						<span><i class="fas fa-star star-2 rate55"></i></span>
 						<span><i class="fas fa-star star-3 rate55"></i></span>
