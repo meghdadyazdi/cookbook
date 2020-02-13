@@ -17,18 +17,16 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'task_manager'
 app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 mongo = PyMongo(app)
-
 app.secret_key = os.environ.get('SECRET_KEY')
 
 
-
+# rating recipe based on user's stars
 def rating(rate1, rate2, rate3, rate4, rate5):
     score = rate1+2*rate2+3*rate3+4*rate4+5*rate5
     num_raters = rate1+rate2+rate3+rate4+rate5
     if num_raters == 0:
         return 0
     return score // num_raters
-
 
 
 @app.route('/')
@@ -58,8 +56,7 @@ def sign_up():
         existing_user = users.find_one(
             {'username': request.form.get('username')})
         if request.form.get('pass') != request.form.get('pass2'):
-            return render_template('sign_up.html', invalid_pass=True)        
-
+            return render_template('sign_up.html', invalid_pass=True)
         if existing_user is None:
             users.insert({'username': request.form.get(
                 'username'), 'password': request.form.get('pass'), 'rated_recipes':[]})
@@ -67,7 +64,6 @@ def sign_up():
             return redirect(url_for('find_recipe'))
         return render_template('sign_up.html', invalid_username=True)
     return render_template('sign_up.html')
-
 
 
 @app.route('/add_recipe')
@@ -104,57 +100,19 @@ def insert_recipe():
         recipes.insert_one(request.form.to_dict())
     return redirect(url_for('my_recipe'))
 
+
 @app.route('/photo/<photoname>')
 def photo(photoname):
     return mongo.send_file(photoname)
 
+
 @app.route('/search_recipe', methods=['POST', 'GET'])
 def search_recipe():
     recipes = mongo.db.recipes
+    # creating index
     recipes.create_index([('recipe_meal', 'text'), ('recipe_name', 'text'), ('recipe', 'text'),
                           ('recipe_ingredients', 'text'), ('recipe_energy', 'text')],name="search_index", weights={'title': 100, 'body': 25})
     SR = recipes.find({'$text': {'$search': request.form.get('search_recipe')}})
-
-    # start ='.*'
-    # end = '.*'
-
-    # pattern = start + re.escape(request.form.get('search_recipe')) + end
-   
-    # pattern=re.compile(r'.*eg.*')
-    # print(pattern)
-
-
-    # login_user = users.find_one({'username': request.form.get('username')})
-
-
-    # SR = recipes.find({'recipe': request.form.get('search_recipe')})
-
-    # print(re.compile(request.form.get('search_recipe')))
-
-    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    # search_recipe = re.compile(f"/{request.form.get('search_recipe')}/", re.IGNORECASE)
-
-    # SR = recipes.find({'$text': {'$regex': search_recipe}})
-
-    # for each in SR :
-    #     print(each)
-    # recipes.create_index([
-    # 'recipe_meal',
-    # 'recipe_name',
-    # 'recipe',
-    # 'recipe_ingredients',
-    # 'recipe_energy'
-    #   ], name="search_index"
-    #  )
-    # SR = recipes.find({"search_index": re.compile(request.form.get('search_recipe'))})
-    # SR = recipes.find({"search_index": {'$regex': re.compile(request.form.get('search_recipe'))}})
-
-    # search_recipe = re.compile(f"/{request.form.get('search_recipe')}/", re.IGNORECASE)
-    # SR = recipes.find({"search_index": {'$regex': search_recipe}})
-
-    # for each in SR:
-    #     print(each)
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     if SR:
         return render_template("search_recipe.html",
                            recipes_search=SR, recipes=mongo.db.recipes.find())
@@ -168,6 +126,7 @@ def logout():
     session['username']=[]
     return redirect(url_for('find_recipe'))
 
+
 @app.route('/my_recipe')
 def my_recipe():
     return render_template("my_recipe.html",
@@ -178,7 +137,6 @@ def my_recipe():
 def one_my_recipe(recipe_id):
     recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     return render_template('one_my_recipe.html', recipe=recipe)
-
 
 
 @app.route('/one_recipe/<recipe_id>', methods=['POST', 'GET'])
@@ -208,7 +166,6 @@ def rate_recipe(recipe_id):
     if request.form.get('recipe_rate55'):
         users.update({'username': session['username']}, {'$push': {'rated_recipes': recipe_id}})
         recipes.update({'_id': ObjectId(recipe_id)}, {'$inc': {'recipe_rate5': 1}})
-
     return redirect(url_for('one_recipe', recipe_id=recipe_id))
 
 
@@ -238,8 +195,7 @@ def update_recipe(recipe_id):
         'recipe_rate3':0,
         'recipe_rate4':0,
         'recipe_rate5':0
-        })
-    
+        })    
     else:
         recipes.update_many( {'_id': ObjectId(recipe_id)},
         {
@@ -260,20 +216,19 @@ def update_recipe(recipe_id):
     return redirect(url_for('my_recipe'))
 
 
-
-
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
     mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
     return redirect(url_for('my_recipe'))
 
+
+# sending active_user to all htmls
 @app.context_processor
 def inject_user():
     if session:
         return dict(active_user=session['username'])
     else:
         return dict()
-
 
 
 if __name__ == '__main__':

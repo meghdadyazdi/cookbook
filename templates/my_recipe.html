@@ -15,19 +15,19 @@
 				<!-- defining rate of a recipe -->
 				{%set num_raters = recipe.recipe_rate1+recipe.recipe_rate2+recipe.recipe_rate3+recipe.recipe_rate4+recipe.recipe_rate5 %}
 				{%set score = recipe.recipe_rate1+2*recipe.recipe_rate2+3*recipe.recipe_rate3+4*recipe.recipe_rate4+5*recipe.recipe_rate5 %}
-				{%set rate = score // num_raters %}
+				
 
 
 				<div class="row m0 p0">
-					<div class="col">
+					<div class="col p0">
 						{% if num_raters == 0%}
 						<span><i class="fas fa-star star1 p0"></i></span>
 						<span><i class="fas fa-star star2 p0"></i></span>
 						<span><i class="fas fa-star star3 p0"></i></span>
 						<span><i class="fas fa-star star4 p0"></i></span>
 						<span><i class="fas fa-star star5 p0"></i></span>
-						<div><i>This recipe is not rated yet. Be the first one to rate it!</i></div>
 						{%else%}
+                        {%set rate = score // num_raters %}
 						{% if rate == 1%}
 
 						<span><i class="fas fa-star star1 rate11 p0"></i></span>
@@ -74,10 +74,10 @@
 				<p class="no-flow"><strong> Energy:</strong><i> {{recipe.recipe_energy}} </i></p>
 				<p class="no-flow">{{recipe.recipe_meal}}</p>
 
-				<p class="no-flow">
+				<p class="no-flow m0 p0">
 					<strong>Ingredients:</strong> {{recipe.recipe_ingredients}}
 				</p>
-				<p class="no-flow">
+				<p class="no-flow m0 p0">
 					<strong>Recipe:</strong> {{recipe.recipe}}
 				</p>
 			</div>

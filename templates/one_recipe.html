@@ -14,13 +14,7 @@
 				<p><i>{{recipe.recipe_date[4:7]+"-"+recipe.recipe_date[8:10]+"-"+recipe.recipe_date[11:15]+" ("+recipe.recipe_date[16:21]+")"}}</i>
 				</p>
 
-				<!-- define percentage of each rating -->
-				{% set score = recipe.recipe_rate1+recipe.recipe_rate2+recipe.recipe_rate3+recipe.recipe_rate4+recipe.recipe_rate5 %}
-				{% set excellent= ((recipe.recipe_rate5/score)*100)|int%}
-				{% set verygood= ((recipe.recipe_rate4/score)*100)|int%}
-				{% set good= ((recipe.recipe_rate3/score)*100)|int%}
-				{% set average= ((recipe.recipe_rate2/score)*100)|int%}
-				{% set bad= ((recipe.recipe_rate1/score)*100)|int%}
+				
 
 				<div class="row">
 					<div class="col">
@@ -33,6 +27,11 @@
 						<span><i class="fas fa-star star-5"></i></span>
 						<div><i>This recipe is not rated yet. Be the first one to rate it!</i></div>
 						{%else%}
+                        {% set excellent= ((recipe.recipe_rate5/num_raters)*100)|int%}
+			           	{% set verygood= ((recipe.recipe_rate4/num_raters)*100)|int%}
+		        		{% set good= ((recipe.recipe_rate3/num_raters)*100)|int%}
+			        	{% set average= ((recipe.recipe_rate2/num_raters)*100)|int%}
+			        	{% set bad= ((recipe.recipe_rate1/num_raters)*100)|int%}
 						{% if rate == 1%}
 						<span><i class="fas fa-star star-1 rate11"></i></span>
 						<span><i class="fas fa-star star-2"></i></span>
@@ -75,8 +74,9 @@
 					</div>
 				</div>
 
-				<div class="row p0 m0">
-
+				{% if id in user_in.rated_recipes %}
+                {% if num_raters != 0%}
+                <div class="row p0 m0">
 					<div class="row">
 						<div class="col s12 m6">
 							<div class="col s3 m4 p0"><i>Excellent</i></div>
@@ -126,7 +126,10 @@
 					</div>
 
 				</div>
-				{% if id in user_in.rated_recipes %}
+                {% endif %}
+
+
+				
 				<div><i>You have rated this recipe so you can not submit your rate once more!<i></div>
                 {% elif not active_user %}
                 <div><i>To submit your rate for this recipe you should first sign in or sign up!<i></div>
