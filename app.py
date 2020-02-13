@@ -179,6 +179,13 @@ def edit_recipe(recipe_id):
 @app.route('/update_recipe/<recipe_id>', methods=['POST'])
 def update_recipe(recipe_id):
     recipes = mongo.db.recipes
+    users_c = mongo.db.users
+    users = mongo.db.users.find()
+    rater=[]
+    for user in users:
+        if str(recipe_id) in user['rated_recipes']:
+            rater = user['username']
+        users_c.update({'username': rater}, {'$pull': {'rated_recipes': recipe_id}})
     if 'recipe_photo' in request.files:        
         recipe_photo=request.files['recipe_photo']
         mongo.save_file(recipe_photo.filename+'new', recipe_photo)
