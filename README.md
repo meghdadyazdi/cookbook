@@ -2,62 +2,84 @@
 
 Food lovers around the world are looking for new recipes everyday. This application is designed to help them find new and old recipes for known and unknown 
 foods. User can also share his/her own recipe. 
+
+You can find a live demo [here](https://cookbook-meghdad.herokuapp.com/)
  
 ## UX
- 
 CookBooK website is designed for general users who wants to have a quick search in recipes and for a little bit more serious users who like to share their recipes.
-As a user:
-- You will search ingredients, energy level, ... to find the recipes.
-- You will sing in to website to be able add your own (or others) recipes to share it with other users
-- You can edit or delete your recipes.
-
-
-## Features
-
-In this section, you should go over the different parts of your project, and describe each in a sentence or so.
  
-### Existing Features
-- Feature 1 - allows users X to achieve Y, by having them fill out Z
-- ...
+### User stories
+As a user:
+- You will search recipe name, ingredients, energy level, ... to find recipes.
+- You will sing up to website to be able add your own (or others) recipes to share it with other users
+- You can edit or delete your recipes.
+- All the users who are signed can give star to all recipes to rate them. Users give stars to recipes and then they can see how a recipe is rated from one to five stars.
 
-For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
+### Structure
+In the home page all the recipes are sorted by the date they are added or edited. Recent recipes are at the top. All visitors can see all the recipes and the rate for each recipe.
+But to add, edit, or give star to recipes visitors should sign in or if they have not signed in yet the should sign up first.
 
-In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
+### design
+Recipes are shown in the home page in a clickable card to go to the full recipe page.
+
+
+
+## Technologies
+###HTML5  
+###CSS & CSS3
+###Materialize CSS
+ - Google materialize is the main tool to design and structure the ellements on the pages. The resnponsive navbar, sid bar and footers are all desiged by Materialize. 
+###JQuery
+ - With JQuery is used for dropdown menu and side bar. The clickabale rating stars which shows and counts the rates of recipes are all controlled ne JQuery.
+###Python
+###Heroku
+- The application is deployed to Heroku.
+###Flask
+- To make routes in Python and render or redirect them.
+###MongoDB
+- All the data related to recipes and users are stor in MongoDB.
+  * Two collections are created. RECIPES collection for storing all recipes data (recipe_name, recipe_ingredients, recipe_energy, recipe_photo, recipe_username and recipe_rate). USERS for storing data related to
+    users (username, password and rated_recipes)
+###Pymongo
+- To make a connection between MongoDB database and Python.
+###Jinja
+- To make a Python-like expressions in HTML. 
+##Font Awesome
+- Some of the icons are from Font Awesome.
+##Material Icons
+- Some of the icons are from Material Icons.
 
 ### Features Left to Implement
-- Rating other user's recipe after signing in to website
-
-## Technologies Used
-
-In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
-
-- [JQuery](https://jquery.com)
-    - The project uses **JQuery** to simplify DOM manipulation.
-
+The search will be improved in such a way that by typing part of the searched keyword all suggested keyword are shown.
+The sorting will be based on recipe rating too.
+Users can comment on the recipes.
+User can have chat with owner of a recipe.
 
 ## Testing
+In test.py file all the routs and rating(a1, a2, a3, a4, a5) are tested. 
 
-In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your user stories from the UX section and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
+The sign in and sign up are tested. If users enter a invalid username or password there will be short notice.
+To sign up the password should be repeated with the same password. If users enter diffrent passwords there will be again a short notice.
 
-Whenever it is feasible, prefer to automate your tests, and if you've done so, provide a brief explanation of your approach, link to the test file(s) and explain how to run them.
+Every user can rate a recipe just once but when the recipe is edited rates will remove and all users can rated again. This issue was tested to make sure that user 
+can rate a recipe once.
 
-For any scenarios that have not been automated, test the user stories manually and provide as much detail as is relevant. A particularly useful form for describing your testing process is via scenarios, such as:
+While developing the code I realized that session is not removed and I developed the code while I was not aware of that. So when I opened the aplication in a new browser or in incognto window
+there was an error alarming "No username found". I decided to run the app always in incognito widow to be aware of changes in session.
 
-1. Contact form:
-    1. Go to the "Contact Us" page
-    2. Try to submit the empty form and verify that an error message about the required fields appears
-    3. Try to submit the form with an invalid email address and verify that a relevant error message appears
-    4. Try to submit the form with all inputs valid and verify that a success message appears.
 
-In addition, you should mention in this section how your project looks and works on different browsers and screen sizes.
-
-You should also mention in this section any interesting bugs or problems you discovered during your testing, even if you haven't addressed them yet.
-
-If this section grows too long, you may want to split it off into a separate file and link to it from here.
+The application was tested on Chrome and FireFox and different devices like mobile (iPhone and Samsung) and iPads to check the responsiveness.
 
 ## Deployment
 
-This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub Pages or Heroku).
+This application is deployed to Heroku and the following *config vars* are add properly:
+    *   IP 
+    *   PORT
+    *   MONGO_URI
+    *   SECRET_KEY
+The application is also pushed to my Github repository `https://github.com/meghdadyazdi/cookbook` which can be cloned
+
+
 
 In particular, you should provide all details of the differences between the deployed version and the development version, if any, including:
 - Different values for environment variables (Heroku Config Vars)?
@@ -66,15 +88,11 @@ In particular, you should provide all details of the differences between the dep
 
 In addition, if it is not obvious, you should also describe how to run your code locally.
 
-
-## Credits
-
 ### Content
-- The text for section Y was copied from the [Wikipedia article Z](https://en.wikipedia.org/wiki/Z)
+- All content in this application were written by me.
 
 ### Media
 - The photos used in this site were obtained from ...
 
 ### Acknowledgements
-
-- I received inspiration for this project from X
+- I solved a lot of my problems during development of this application by the help of [StackOverflow](https://stackoverflow.com/) and [W3Schools](https://www.w3schools.com/) websites.
