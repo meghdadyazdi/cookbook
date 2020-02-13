@@ -142,7 +142,9 @@ def one_my_recipe(recipe_id):
 @app.route('/one_recipe/<recipe_id>', methods=['POST', 'GET'])
 def one_recipe(recipe_id):
     recipe=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    user_in=mongo.db.users.find_one({"username": session['username']})
+    user_in=[]
+    if session:
+        user_in=mongo.db.users.find_one({"username": session['username']})
     rate=rating(recipe['recipe_rate1'], recipe['recipe_rate2'], recipe['recipe_rate3'], recipe['recipe_rate4'], recipe['recipe_rate5'])    
     return render_template('one_recipe.html', recipe=recipe, user_in=user_in, rate=rate, id=str(recipe["_id"]))
 
