@@ -8,7 +8,7 @@ You can find a live demo [here](https://cookbook-meghdad.herokuapp.com/)
 ## UX
 CookBooK website is designed for general users who wants to have a quick search in recipes and for a little bit more serious users who like to share their recipes.
  
-### User stories
+## User stories
 As a user:
 - You will search recipe name, ingredients, energy level, ... to find recipes.
 - You will sing up to website to be able add your own (or others) recipes to share it with other users
@@ -22,34 +22,44 @@ But to add, edit, or give star to recipes visitors should sign in or if they hav
 ### design
 Recipes are shown in the home page in a clickable card to go to the full recipe page.
 
-
-
 ## Technologies
-###HTML5  
-###CSS & CSS3
-###Materialize CSS
+
+### HTML5  
+
+### CSS & CSS3
+
+### Materialize CSS
  - Google materialize is the main tool to design and structure the ellements on the pages. The resnponsive navbar, sid bar and footers are all desiged by Materialize. 
-###JQuery
+
+### JQuery
  - With JQuery is used for dropdown menu and side bar. The clickabale rating stars which shows and counts the rates of recipes are all controlled ne JQuery.
-###Python
-###Heroku
+
+### Python
+
+### Heroku
 - The application is deployed to Heroku.
-###Flask
+
+### Flask
 - To make routes in Python and render or redirect them.
-###MongoDB
+
+### MongoDB
 - All the data related to recipes and users are stor in MongoDB.
   * Two collections are created. RECIPES collection for storing all recipes data (recipe_name, recipe_ingredients, recipe_energy, recipe_photo, recipe_username and recipe_rate). USERS for storing data related to
     users (username, password and rated_recipes)
-###Pymongo
+
+### Pymongo
 - To make a connection between MongoDB database and Python.
-###Jinja
+
+### Jinja
 - To make a Python-like expressions in HTML. 
-##Font Awesome
+
+### Font Awesome
 - Some of the icons are from Font Awesome.
-##Material Icons
+
+### Material Icons
 - Some of the icons are from Material Icons.
 
-### Features Left to Implement
+## Features Left to Implement
 The search will be improved in such a way that by typing part of the searched keyword all suggested keyword are shown.
 The sorting will be based on recipe rating too.
 Users can comment on the recipes.
@@ -67,32 +77,18 @@ can rate a recipe once.
 While developing the code I realized that session is not removed and I developed the code while I was not aware of that. So when I opened the aplication in a new browser or in incognto window
 there was an error alarming "No username found". I decided to run the app always in incognito widow to be aware of changes in session.
 
-
 The application was tested on Chrome and FireFox and different devices like mobile (iPhone and Samsung) and iPads to check the responsiveness.
 
 ## Deployment
-
 This application is deployed to Heroku and the following *config vars* are add properly:
-    *   IP 
-    *   PORT
-    *   MONGO_URI
-    *   SECRET_KEY
+- IP 
+- PORT
+- MONGO_URI
+- SECRET_KEY
 The application is also pushed to my Github repository `https://github.com/meghdadyazdi/cookbook` which can be cloned
 
-
-
-In particular, you should provide all details of the differences between the deployed version and the development version, if any, including:
-- Different values for environment variables (Heroku Config Vars)?
-- Different configuration files?
-- Separate git branch?
-
-In addition, if it is not obvious, you should also describe how to run your code locally.
-
-### Content
+## Content
 - All content in this application were written by me.
 
-### Media
-- The photos used in this site were obtained from ...
-
-### Acknowledgements
+## Acknowledgements
 - I solved a lot of my problems during development of this application by the help of [StackOverflow](https://stackoverflow.com/) and [W3Schools](https://www.w3schools.com/) websites.
